@@ -111,7 +111,7 @@ $date = $req->fetch();
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Intervenant</label>
                                     <select class="form-control" name='speakerselect' id="speakerselect">
-                                        <option disabled>Sélectionner un intervenant</option>
+                                        <option>Sélectionner un intervenant</option>
                                         <?php
 
                                         $sql = "SELECT * FROM speakers_subjects
@@ -120,7 +120,7 @@ $date = $req->fetch();
                                         $req = $db->prepare($sql);
                                         $req->execute();
                                         $speakers = $req->fetchAll();
-                                        // var_dump($speakers);
+                                        // echo (count($speakers));
                                         // die();
                                         foreach ($speakers as $key => $speaker) { ?>
                                             <option <?= $date["speaker_id"] === $speaker["id"] ? "selected" : '' ?> value="<?= $speaker['id'] ?>"> <?= $speaker['firstname'] . ' ' . $speaker['lastname'] ?></option>
