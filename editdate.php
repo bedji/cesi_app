@@ -57,7 +57,7 @@ $date = $req->fetch();
                 </div>
             </div>
             <div class="card-body">
-                <form action="./traitementDates.php?action=add" method="POST">
+                <form action="./traitementDates.php?action=edit" method="POST">
                     <h6 class="heading-small text-muted mb-4">information de Date</h6>
                     <div class="pl-lg-12">
                         <div class="row">
@@ -92,14 +92,14 @@ $date = $req->fetch();
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Matiére</label>
                                     <select class="form-control" name='subjectselect' id="subjectselect">
-                                        <option disabled selected>Sélectionner une Matiére</option>
+                                        <option disabled>Sélectionner une Matiére</option>
                                         <?php
                                         $sql = "SELECT * FROM subjects";
                                         $req = $db->prepare($sql);
                                         $req->execute();
                                         $subjects = $req->fetchAll();
                                         foreach ($subjects as $key => $subject) { ?>
-                                            <option value="<?= $subject['id'] ?>"> <?= $subject['name'] ?></option>
+                                            <option <?= $subject['id'] === $date['subject_id'] ? "selected" : "" ?> value="<?= $subject['id'] ?>"> <?= $subject['name'] ?></option>
                                         <?php } ?>
 
 
@@ -111,7 +111,23 @@ $date = $req->fetch();
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Intervenant</label>
                                     <select class="form-control" name='speakerselect' id="speakerselect">
-                                        <option disabled selected>Sélectionner un intervenant</option>
+                                        <option disabled>Sélectionner un intervenant</option>
+                                        <?php
+
+                                        $sql = "SELECT * FROM speakers_subjects
+                                        JOIN speakers ON speakers.id = speakers_subjects.speaker_id
+                                        WHERE speakers_subjects.subject_id =" . $date['subject_id'];
+                                        $req = $db->prepare($sql);
+                                        $req->execute();
+                                        $speakers = $req->fetchAll();
+                                        var_dump($speakers);
+                                        foreach ($speakers as $key => $speaker) { ?>
+
+                                            <option <?= $date["speaker_id"] === $speaker["id"] ? "selected" : '' ?> value="<?= $speaker['id'] ?>"> <?= $speaker['firstname'] ?></option>
+                                        <?php }
+                                        ?>
+
+
                                     </select>
                                 </div>
                             </div>
@@ -144,5 +160,5 @@ $date = $req->fetch();
 
 
     </div>
-
+    <script defer src="./datesfetch.js"></script>
     <?php include("./components/footer.php") ?>
