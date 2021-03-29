@@ -78,7 +78,7 @@ $date = $req->fetch();
                                         $req->execute();
                                         $promos = $req->fetchAll();
                                         foreach ($promos as $key => $promo) { ?>
-                                            <option <?= $promo['id'] === $_GET['id'] ? "selected" : "" ?> value="<?= $promo['id'] ?>"> <?= $promo['name'] ?></option>
+                                            <option <?= $date['promo_id'] === $promo['id'] ? "selected" : "" ?> value="<?= $promo['id'] ?>"> <?= $promo['name'] ?></option>
                                         <?php } ?>
 
 
@@ -120,9 +120,10 @@ $date = $req->fetch();
                                         $req = $db->prepare($sql);
                                         $req->execute();
                                         $speakers = $req->fetchAll();
-                                        var_dump($speakers);
+                                        // var_dump($speakers);
+                                        // die();
                                         foreach ($speakers as $key => $speaker) { ?>
-                                            <option <?= $date["speaker_id"] === $speaker["id"] ? "selected" : '' ?> value="<?= $speaker['id'] ?>"> <?= $speaker['firstname'] ?></option>
+                                            <option <?= $date["speaker_id"] === $speaker["id"] ? "selected" : '' ?> value="<?= $speaker['id'] ?>"> <?= $speaker['firstname'] . ' ' . $speaker['lastname'] ?></option>
                                         <?php }
                                         ?>
 
