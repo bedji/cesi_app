@@ -25,12 +25,14 @@ function remplirsubject(donnee) {
   selectpeaker.innerHTML =
     donnee.length == 0
       ? " <option disabled selected>Aucun intervenant trouver</option>"
-      : " <option disabled selected>Sélectionner un intervenant</option>";
+      : " <option  >Sélectionner un intervenant</option>";
   donnee.forEach((element) => {
     console.log(element);
     var option = document.createElement("option");
     option.text = element["lastname"] + " " + element["speaker_name"];
     option.value = element["id"];
+    option.innerHTML +=
+      "<?= $subject['id'] === $date['subject_id'] ? 'selected' : '' ?>";
     selectpeaker.add(option);
   });
 }

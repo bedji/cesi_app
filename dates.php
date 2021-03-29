@@ -123,7 +123,7 @@ $dates = $req->fetchAll();
                                                     <div class="modal-content bg-gradient-danger">
 
                                                         <div class="modal-header">
-                                                            <h6 class="modal-title" id="modal-title-notification">votre attention</h6>
+                                                            <h6 class="modal-title" id="modal-title-notification">Votre attention</h6>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
@@ -149,7 +149,7 @@ $dates = $req->fetchAll();
                                                 </div>
                                             </div>
                                             <!-- fin modal -->
-                                            <a class="btn btn-warning col-5" href="./editIntervenant.php?id=<?= $speaker['id']; ?>">Modifier</a>
+                                            <a class="btn btn-warning col-5" href="./editdate.php?id=<?= $date['id']; ?>">Modifier</a>
                                         </div>
                                     </td>
                                 </tr>
