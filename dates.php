@@ -149,7 +149,7 @@ $dates = $req->fetchAll();
                                                 </div>
                                             </div>
                                             <!-- fin modal -->
-                                            <a class="btn btn-warning col-5" href="./editIntervenant.php?id=<?= $speaker['id']; ?>">Modifier</a>
+                                            <a class="btn btn-warning col-5" href="./editIntervenant.php?id=<?= $date['id']; ?>">Modifier</a>
                                         </div>
                                     </td>
                                 </tr>

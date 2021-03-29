@@ -9,7 +9,7 @@ $req->execute();
 
 $speaker = $req->fetch();
 if (!$speaker) {
-    header('Location: intervenants.php');
+    header('Location: dates.php');
 }
 
 ?>
@@ -32,7 +32,7 @@ if (!$speaker) {
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="./intervenants.php">Intervenants</a></li>
+                            <li class="breadcrumb-item"><a href="./dates.php">Intervenants</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Modifier</li>
                         </ol>
                     </nav>
@@ -110,7 +110,7 @@ if (!$speaker) {
 
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="./intervenants.php" class="btn btn-warning">Retour</a>
+                            <a href="./dates.php" class="btn btn-warning">Retour</a>
                             <button class="btn btn-success">Modifier</button>
                         </div>
                     </div>
