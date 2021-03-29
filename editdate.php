@@ -122,7 +122,6 @@ $date = $req->fetch();
                                         $speakers = $req->fetchAll();
                                         var_dump($speakers);
                                         foreach ($speakers as $key => $speaker) { ?>
-
                                             <option <?= $date["speaker_id"] === $speaker["id"] ? "selected" : '' ?> value="<?= $speaker['id'] ?>"> <?= $speaker['firstname'] ?></option>
                                         <?php }
                                         ?>

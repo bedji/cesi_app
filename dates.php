@@ -123,7 +123,7 @@ $dates = $req->fetchAll();
                                                     <div class="modal-content bg-gradient-danger">
 
                                                         <div class="modal-header">
-                                                            <h6 class="modal-title" id="modal-title-notification">votre attention</h6>
+                                                            <h6 class="modal-title" id="modal-title-notification">Votre attention</h6>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
