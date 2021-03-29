@@ -7,6 +7,14 @@ $req = $db->prepare($sql);
 $req->execute();
 
 $subjects = $req->fetchAll();
+
+
+$sql2 = "SELECT * FROM speakers";
+$req = $db->prepare($sql2);
+$req->execute();
+
+$speakers = $req->fetch();
+
 ?>
 
 <!-- Header -->
@@ -60,6 +68,7 @@ $subjects = $req->fetchAll();
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Description</th>
+                <th>Intervenant</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -74,6 +83,9 @@ $subjects = $req->fetchAll();
                 </th>
                 <td>
                     <?= $subject['description'];?>
+                </td>
+                <td>
+                  <?= $speakers['lastname'] . " " . $speakers['firstname'];?>
                 </td>
                 <td>
                   <div class="text-center">

@@ -1,4 +1,7 @@
-<?php include("./components/header.php") ?>
+<?php
+include("./components/header.php");
+include("./components/db.php");
+?>
 
 <!-- Header -->
 <div class="header bg-primary pb-6">
@@ -58,6 +61,23 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-description">Description</label>
                                     <input type="text" name="description" id="input-description" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-description">Intervenant</label>
+                                    <select name="speaker" id="input-speaker" class="form-control">
+                                        <?php 
+                                            $sql = "SELECT * FROM speakers";
+                                            $req = $db->prepare($sql);
+                                            $req->execute();
+                                            $speakers = $req->fetchAll();
+                                            foreach ($speakers as $key => $speaker) {
+                                            echo '<option>' . $speaker["lastname"] . ' ' . $speaker["firstname"] . '</option>';
+                                        }?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
