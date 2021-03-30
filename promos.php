@@ -92,8 +92,8 @@ $promos = $req->fetchAll();
                       <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
                         <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
                       </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
+                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="my avatar">
+                        <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $promo['id'] ?>.jpg">
                       </a>
                       <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
                         <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
