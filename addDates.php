@@ -1,9 +1,5 @@
 <?php include("./components/header.php");
 include("./components/db.php");
-
-
-
-
 ?>
 
 <!-- Header -->
@@ -85,7 +81,10 @@ include("./components/db.php");
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Matiére</label>
                                     <select class="form-control" name='subjectselect' id="subjectselect">
+
+                                      
                                         <option value="null" disabled selected>Sélectionner une Matiére</option>
+
                                         <?php
                                         $sql = "SELECT * FROM subjects";
                                         $req = $db->prepare($sql);

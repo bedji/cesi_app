@@ -28,6 +28,38 @@
         .b {
             border: 1px red solid !important;
         }
+        .multiselect {
+        width: 200px;
+        }
+
+        .selectBox {
+        position: relative;
+        }
+
+        .selectBox select {
+        width: 100%;
+        }
+
+        .overSelect {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        }
+
+        #checkboxes {
+        display: none;
+        border: 1px #dadada solid;
+        }
+
+        #checkboxes label {
+        display: block;
+        }
+
+        #checkboxes label:hover {
+        background-color: #1e90ff;
+        }
     </style>
 </head>
 
@@ -49,13 +81,19 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="index.php">
                                 <i class="ni ni-calendar-grid-58 text-primary"></i>
-                                <span class="nav-link-text">TablePormos</span>
+                                <span class="nav-link-text">Promos</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./intervenants.php">
                                 <i class="ni ni-single-02 text-primary"></i>
                                 <span class="nav-link-text">Intervenants</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./etudiants.php">
+                                <i class="ni ni-single-02 text-primary"></i>
+                                <span class="nav-link-text">Étudiants</span>
                             </a>
                         </li>
                         <li class="nav-item">

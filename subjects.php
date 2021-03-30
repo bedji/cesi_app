@@ -7,6 +7,14 @@ $req = $db->prepare($sql);
 $req->execute();
 
 $subjects = $req->fetchAll();
+
+
+$sql2 = "SELECT * FROM speakers";
+$req = $db->prepare($sql2);
+$req->execute();
+
+$speakers = $req->fetch();
+
 ?>
 
 <!-- Header -->
@@ -57,23 +65,23 @@ $subjects = $req->fetchAll();
           <table class="table table-bordered align-items-center table-flush">
             <thead class="thead-light">
               <tr class="text-center">
-                <th>ID</th>
                 <th>Nom</th>
                 <th>Description</th>
+                <th>Intervenant</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody class="list">
               <?php foreach ($subjects as $key => $subject) { ?>
                 <tr class="text-center">
-                <td>
-                    <?= $subject['id'];?>
-                </td>
                 <th>
                     <?= $subject['name'];?>
                 </th>
                 <td>
                     <?= $subject['description'];?>
+                </td>
+                <td>
+                  <?= $speakers['lastname'] . " " . $speakers['firstname'];?>
                 </td>
                 <td>
                   <div class="text-center">

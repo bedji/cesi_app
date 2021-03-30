@@ -28,7 +28,7 @@ switch ($_GET['action']) {
         ) {
             $sql = "INSERT INTO subjects (name, description) VALUE (?, ?)";
             $req = $db->prepare($sql);
-            $req->bindValue(1, strtolower($_POST['name']), PDO::PARAM_STR);
+            $req->bindValue(1, ucfirst($_POST['name']), PDO::PARAM_STR);
             $req->bindValue(2, strtolower($_POST['description']), PDO::PARAM_STR);
             if ($req->execute()) {
                 header('Location: subjects.php');
@@ -41,7 +41,7 @@ switch ($_GET['action']) {
             $sql = "UPDATE subjects SET name=?, description=? WHERE id=" . $_GET['id'];
 
             $req = $db->prepare($sql);
-            $req->bindValue(1, strtolower($_POST['name']), PDO::PARAM_STR);
+            $req->bindValue(1, ucfirst($_POST['name']), PDO::PARAM_STR);
             $req->bindValue(2, strtolower($_POST['description']), PDO::PARAM_STR);
 
             if ($req->execute()) {

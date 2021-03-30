@@ -9,7 +9,7 @@ $req->execute();
 
 $speaker = $req->fetch();
 if (!$speaker) {
-    header('Location: intervenants.php');
+    header('Location: dates.php');
 }
 
 ?>
@@ -32,7 +32,7 @@ if (!$speaker) {
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="./intervenants.php">Intervenants</a></li>
+                            <li class="breadcrumb-item"><a href="./dates.php">Intervenants</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Modifier</li>
                         </ol>
                     </nav>
@@ -94,20 +94,31 @@ if (!$speaker) {
                                     <input type="tel" name="telephone" id="input-last-name" class="form-control" placeholder="Last name" value="<?= $speaker['telephone'] ?>">
                                 </div>
                             </div>
-                            <!-- liste ici  -->
-
-                            <div class="form-group">
-                                <label for="choiSubject">Example multiple select</label>
-                                <select multiple class="form-control" id="choiSubject">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-subjects">Matières</label>
+                                        <div>
+                                            <div class="selectBox" onclick="showCheckboxes()">
+                                            <select class="form-control">
+                                                <option selected disabled>Selectionnez une matière</option>
+                                            </select>
+                                            <div class="overSelect"></div>
+                                            </div>
+                                            <div id="checkboxes">
+                                            <?php
+                                                $sql = "SELECT * FROM subjects";
+                                                $req = $db->prepare($sql);
+                                                $req->execute();
+                                                $subjects = $req->fetchAll();
+                                                foreach ($subjects as $key => $subject) { ?>
+                                                <label for="<?= $subject['id']?>"><input name="subjects[]" type="checkbox" id="<?= $subject['id']?>" value="<?= $subject['id']?>" />&nbsp;<?= $subject['name']?></label>
+                                            <?php } ?>
+                                            </div>
+                                        </div>
+                                </div>
                             </div>
-                            <!-- Build your select: -->
-
                         </div>
                         <div class="d-flex justify-content-between">
                             <a href="./intervenants.php" class="btn btn-warning">Retour</a>

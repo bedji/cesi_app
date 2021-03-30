@@ -2,22 +2,12 @@
 include("./components/header.php");
 include("./components/db.php");
 
-$sql = "SELECT * FROM speakers";
+$sql = "SELECT * FROM students";
 $req = $db->prepare($sql);
 $req->execute();
 
-$speakers = $req->fetchAll();
+$students = $req->fetchAll();
 
-function getSsubjects($db, $speakerId)
-{
-  $sql = "SELECT * FROM `speakers_subjects` 
-  JOIN subjects ON subjects.id = speakers_subjects.subject_id 
-  WHERE speaker_id = $speakerId";
-  $req = $db->prepare($sql);
-  $req->execute();
-
-  return  $req->fetchAll();
-}
 ?>
 
 <!-- Header -->
@@ -30,12 +20,12 @@ function getSsubjects($db, $speakerId)
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
-              <li class="breadcrumb-item active" aria-current="page">Intervenants</li>
+              <li class="breadcrumb-item active" aria-current="page">Etudiants</li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
-          <a href="./addIntervenant.php" class="btn btn-sm btn-neutral">Ajouter intervenant</a>
+          <a href="./addetudiants.php" class="btn btn-sm btn-neutral">Ajouter étudiants</a>
         </div>
       </div>
       <!-- Card stats -->
@@ -61,53 +51,48 @@ function getSsubjects($db, $speakerId)
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
-          <h3 class="mb-0">Liste des intervenants</h3>
+          <h3 class="mb-0">Liste des étudiants</h3>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
           <table class="table table-bordered align-items-center table-flush">
             <thead class="thead-light">
               <tr class="text-center">
-                <th>Intervenant</th>
-                <th>ID</th>
+                <th>Avatar</th>
+                <th>Nom</th>
+                <th>Prénom</th>
                 <th>Mail</th>
-                <th>Téléphone</th>
-                <th>Matières </th>
+                <th>Promotions </th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody class="list">
-              <?php foreach ($speakers as $key => $speaker) { ?>
+              <?php foreach ($students as $key => $student) { ?>
                 <tr class="text-center">
+                <th><a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="my avatar">
+                        <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $student ['id']?>.jpg">
+                      </a></th>
                   <th scope="row">
-                    <?= $speaker['lastname'] . " " . $speaker['firstname']; ?>
+                    <?= $student['lastname'] ; ?>
+                  </th>
+                  <th scope="row">
+                    <?= $student['firstname']; ?>
                   </th>
                   <td class="budget">
-                    <?= $speaker['id']; ?>
-                  </td>
-                  <td>
-                    <?= $speaker['mail']; ?>
-                  </td>
-                  <td>
-                    <?= $speaker['telephone']; ?>
+                    <?= $student['mail']; ?>
                   </td>
                   <td>
                     <?php
-
-                    foreach (getSsubjects($db, $speaker['id']) as $key => $matiere) {
-
-
-
-                    ?>
-                      <a href="./editSubject.php?id=<?= $matiere['id']   ?>" class=".badge-md badge-pill badge-default"><?= $matiere['name']   ?></a>
-
-                    <?php }
-                    ?>
+                    $sql2 = "SELECT * FROM promos WHERE id=" . $student['promo_id'];  
+                    $req2 = $db->prepare($sql2);
+                    $req2->execute();  
+                    $promos = $req2->fetch();
+                    echo '<a href="./calendarPromo.php?id=' . $promos['id'] . '">' . $promos['name'] . '</a>' ?>
                   </td>
                   <td>
                     <div class="text-center">
-                      <a class="btn btn-danger col-2" href="./traitementInt.php?action=delete&id=<?= $speaker['id']; ?>">X</a>
-                      <a class="btn btn-warning col-5" href="./editIntervenant.php?id=<?= $speaker['id']; ?>">Modifier</a>
+                      <a class="btn btn-danger col-2" href="./traitementEtudiants.php?action=delete&id=<?= $student['id']; ?>">X</a>
+                      <a class="btn btn-warning col-5" href="./editetudiants.php?id=<?= $student['id']; ?>">Modifier</a>
                     </div>
                   </td>
                 </tr>

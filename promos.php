@@ -79,23 +79,6 @@ $promos = $req->fetchAll();
                     <?= $promo['studentsNumber']; ?>
                   </td>
                   <td>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div class="avatar-group">
                       <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
                         <img alt="Image placeholder" src="./assets/img/theme/team-1.jpg">
@@ -125,17 +108,13 @@ $promos = $req->fetchAll();
                         <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
                       </a>
                     </div>
-
-
-
-
                   </td>
                   <td>
                     <?= $promo['ref']; ?>
                   </td>
                   <td>
                     <div class="text-center">
-                      <a class="btn btn-danger col-2" href="./traitementPromos.php?action=delete&id=<?= $promo['id']; ?>">X</a>
+                      <a class="btn btn-danger col-2" href="./traitementPromo.php?action=delete&id=<?= $promo['id']; ?>">X</a>
                       <a class="btn btn-warning col-5" href="./editPromo.php?id=<?= $promo['id']; ?>">Modifier</a>
                     </div>
                   </td>
