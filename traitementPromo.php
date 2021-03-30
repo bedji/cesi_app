@@ -26,9 +26,9 @@ switch ($_GET['action']) {
             && isset($_POST['ref']) && !empty($_POST['ref'])){
                 $sql = "INSERT INTO promos (name, studentsNumber, ref) VALUE (?, ?, ?)";
                 $req = $db->prepare($sql);
-                $req->bindValue(1, strtolower($_POST['name']), PDO::PARAM_STR);
+                $req->bindValue(1, ucwords($_POST['name']), PDO::PARAM_STR);
                 $req->bindValue(2, $_POST['studentsNumber'], PDO::PARAM_INT);
-                $req->bindValue(3, strtolower($_POST['ref']), PDO::PARAM_STR);
+                $req->bindValue(3, strtoupper($_POST['ref']), PDO::PARAM_STR);
                 if($req->execute()){
                     header('Location: promos.php');
                 } else {
@@ -45,9 +45,9 @@ switch ($_GET['action']) {
             ){
                 $sql = "UPDATE promos SET name=?, studentsNumber=?, ref=? WHERE id =". $_GET['id'];
                 $req = $db->prepare($sql);
-                $req->bindValue(1, strtolower($_POST['name']), PDO::PARAM_STR);
+                $req->bindValue(1, ucwords($_POST['name']), PDO::PARAM_STR);
                 $req->bindValue(2, $_POST['studentsNumber'], PDO::PARAM_INT);
-                $req->bindValue(3, strtolower($_POST['ref']), PDO::PARAM_STR);
+                $req->bindValue(3, strtoupper($_POST['ref']), PDO::PARAM_STR);
 
                 if($req->execute()){
                     header('Location: promos.php');

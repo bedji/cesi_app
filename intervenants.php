@@ -72,7 +72,7 @@ function getSsubjects($db, $speakerId)
                 <th>ID</th>
                 <th>Mail</th>
                 <th>Téléphone</th>
-                <th>Matiéres </th>
+                <th>Matières </th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -80,7 +80,7 @@ function getSsubjects($db, $speakerId)
               <?php foreach ($speakers as $key => $speaker) { ?>
                 <tr class="text-center">
                   <th scope="row">
-                    <?= $speaker['firstname'] . " " . $speaker['lastname']; ?>
+                    <?= $speaker['lastname'] . " " . $speaker['firstname']; ?>
                   </th>
                   <td class="budget">
                     <?= $speaker['id']; ?>

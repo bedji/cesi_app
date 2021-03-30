@@ -1,4 +1,7 @@
-<?php include("./components/header.php") ?>
+<?php 
+include("./components/header.php");
+include("./components/db.php");
+?>
 
 <!-- Header -->
 <div class="header bg-primary pb-6">
@@ -68,24 +71,20 @@
                                     <input type="email" name="mail" id="input-first-name" class="form-control">
                                 </div>
                             </div>
-                            
-                            <div class="form-group">
-                                    <label class="form-control-label" for="exampleFormControlSelect1">Matiére</label>
-                                    <select class="form-control" name='subjectselect' id="subjectselect">
-                                        <option disabled selected>Sélectionner une Matiére</option>
-                                        <?php
-                                        $sql = "SELECT * FROM subjects";
-                                        $req = $db->prepare($sql);
-                                        $req->execute();
-                                        $subjects = $req->fetchAll();
-                                        foreach ($subjects as $key => $subject) { ?>
-                                            <option value="<?= $subject['id'] ?>"> <?= $subject['name'] ?></option>
-                                        <?php } ?>
-
-
-
-                                    </select>
-                                </div>   
+                            <div class="col-lg-6">
+                                <label class="form-control-label" for="exampleFormControlSelect1">Promotion</label>
+                                <select class="form-control" name='promo_id' id="subjectselect">
+                                    <option disabled selected>Sélectionner une Promo</option>
+                                    <?php
+                                    $sql = "SELECT * FROM promos";
+                                    $req = $db->prepare($sql);
+                                    $req->execute();
+                                    $promos = $req->fetchAll();
+                                    foreach ($promos as $key => $promo) { ?>
+                                        <option value="<?= $promo['id'] ?>"><?= $promo['name'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>   
                         </div>
                         <div class="d-flex justify-content-between">
                             <a href="./etudiants.php" class="btn btn-warning">Retour</a>

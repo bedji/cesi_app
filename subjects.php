@@ -65,7 +65,6 @@ $speakers = $req->fetch();
           <table class="table table-bordered align-items-center table-flush">
             <thead class="thead-light">
               <tr class="text-center">
-                <th>ID</th>
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Intervenant</th>
@@ -75,9 +74,6 @@ $speakers = $req->fetch();
             <tbody class="list">
               <?php foreach ($subjects as $key => $subject) { ?>
                 <tr class="text-center">
-                <td>
-                    <?= $subject['id'];?>
-                </td>
                 <th>
                     <?= $subject['name'];?>
                 </th>

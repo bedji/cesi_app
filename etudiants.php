@@ -8,16 +8,6 @@ $req->execute();
 
 $students = $req->fetchAll();
 
-function getSsubjects($db, $studentId)
-{
-  $sql = "SELECT * FROM `speakers_subjects` 
-  JOIN subjects ON subjects.id = speakers_subjects.subject_id 
-  WHERE speaker_id = $studentId";
-  $req = $db->prepare($sql);
-  $req->execute();
-
-  return  $req->fetchAll();
-}
 ?>
 
 <!-- Header -->
@@ -69,9 +59,8 @@ function getSsubjects($db, $studentId)
             <thead class="thead-light">
               <tr class="text-center">
                 <th>Avatar</th>
-                <th>Noms</th>
-                <th>Prénoms</th>
-                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
                 <th>Mail</th>
                 <th>Promotions </th>
                 <th>Action</th>
@@ -90,13 +79,16 @@ function getSsubjects($db, $studentId)
                     <?= $student['firstname']; ?>
                   </th>
                   <td class="budget">
-                    <?= $student['id']; ?>
-                  </td>
-                  <td>
                     <?= $student['mail']; ?>
                   </td>
-                  
-                 
+                  <td>
+                    <?php
+                    $sql2 = "SELECT * FROM promos WHERE id=" . $student['promo_id'];  
+                    $req2 = $db->prepare($sql2);
+                    $req2->execute();  
+                    $promos = $req2->fetch();
+                    echo '<a href="./calendarPromo.php?id=' . $promos['id'] . '">' . $promos['name'] . '</a>' ?>
+                  </td>
                   <td>
                     <div class="text-center">
                       <a class="btn btn-danger col-2" href="./traitementEtudiants.php?action=delete&id=<?= $student['id']; ?>">X</a>

@@ -1,9 +1,5 @@
 <?php include("./components/header.php");
 include("./components/db.php");
-
-
-
-
 ?>
 
 <!-- Header -->
