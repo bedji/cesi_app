@@ -111,7 +111,7 @@ $date = $req->fetch();
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Intervenant</label>
                                     <select class="form-control" name='speakerselect' id="speakerselect">
-                                        <option>Sélectionner un intervenant</option>
+                                        <option value='null'>Sélectionner un intervenant</option>
                                         <?php
 
                                         $sql = "SELECT * FROM speakers_subjects

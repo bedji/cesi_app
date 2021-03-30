@@ -8,7 +8,7 @@ if (selectsubject) {
     const inter = await getspeakers(e.target.value);
     //il faut remplir le select
     //console.log(inter.length);
-    remplirsubject(inter);
+    remplirspeaker(inter);
     //drawHeader(data);
     // drawTable(data.dates);
   });
@@ -19,8 +19,8 @@ if (selectpeaker) {
   });
 }
 function initcheck() {
-  //console.log(selectpeaker.value);
   validechek.checked = false;
+  console.log(selectpeaker.value);
   if (selectpeaker.value === "null") {
     validechek.disabled = true;
     return;
@@ -35,7 +35,7 @@ async function getspeakers(subjecid) {
   //console.log(data);
   return data;
 }
-function remplirsubject(donnee) {
+function remplirspeaker(donnee) {
   //console.log(donnee.length);
 
   selectpeaker.innerHTML =
@@ -53,3 +53,4 @@ function remplirsubject(donnee) {
   });
   initcheck();
 }
+selectsubject.addEventListener("onload", initcheck());
