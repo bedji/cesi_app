@@ -8,6 +8,13 @@ $req = $db->prepare($sql);
 $req->execute();
 
 $subject = $req->fetch();
+
+
+$sql2 = "SELECT * FROM speakers WHERE id=$id";
+$req = $db->prepare($sql2);
+$req->execute();
+
+$speakers = $req->fetch();
 ?>
 
 <!-- Header -->
@@ -68,6 +75,16 @@ $subject = $req->fetch();
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-description">Description</label>
                                     <input type="text" name="description" id="input-description" class="form-control" value="<?= $subject['description'] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-description">Intervenant</label>
+                                    <select name="speaker" id="input-speaker" class="form-control">
+                                    <option selected value="<?= $speakers['lastname'] . " " . $speakers['firstname'] ?>"></option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
