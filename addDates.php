@@ -16,7 +16,7 @@ include("./components/db.php");
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="./intervenants.php">Dates</a></li>
+                            <li class="breadcrumb-item"><a href="./dates.php">Dates</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Ajout</li>
                         </ol>
                     </nav>
@@ -85,7 +85,7 @@ include("./components/db.php");
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Matiére</label>
                                     <select class="form-control" name='subjectselect' id="subjectselect">
-                                        <option disabled selected>Sélectionner une Matiére</option>
+                                        <option value="null" disabled selected>Sélectionner une Matiére</option>
                                         <?php
                                         $sql = "SELECT * FROM subjects";
                                         $req = $db->prepare($sql);
@@ -104,7 +104,7 @@ include("./components/db.php");
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Intervenant</label>
                                     <select class="form-control" name='speakerselect' id="speakerselect">
-                                        <option disabled selected>Sélectionner un intervenant</option>
+                                        <option value="null" disabled selected>Sélectionner un intervenant</option>
                                     </select>
                                 </div>
                             </div>

@@ -111,7 +111,7 @@ $date = $req->fetch();
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Intervenant</label>
                                     <select class="form-control" name='speakerselect' id="speakerselect">
-                                        <option>Sélectionner un intervenant</option>
+                                        <option value='null'>Sélectionner un intervenant</option>
                                         <?php
 
                                         $sql = "SELECT * FROM speakers_subjects
@@ -134,7 +134,7 @@ $date = $req->fetch();
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input name="valider" type="checkbox" class="custom-control-input" id="speakervalid">
+                                        <input name="valider" type="checkbox" <?= $date['validated']  ? 'checked ' : '' ?>class="custom-control-input" id="speakervalid">
                                         <label class="custom-control-label" for="speakervalid">Date Validé</label>
                                     </div>
                                 </div>

@@ -39,10 +39,16 @@ switch ($_GET['action']) {
                 $sql = "INSERT INTO `dates` ( `date`, `validated`, `promo_id`, `subject_id`, `speaker_id`) VALUES ( ?, ?, ?, ?, ?)";
                 $req = $db->prepare($sql);
                 $req->bindValue(1, strtolower($_POST['dateinput']), PDO::PARAM_STR);
-                $req->bindValue(2, strtolower($_POST['valider']) === "on" ? 1 : 0, PDO::PARAM_INT);
+                $req->bindValue(2, isset($_POST['valider']) && $_POST['valider'] === "on" ? 1 : 0, PDO::PARAM_INT);
+                echo (isset($_POST['valider']) && $_POST['valider'] === "on" ? 1 : 0);
+
                 $req->bindValue(3, $_POST['promoid'], PDO::PARAM_INT);
                 $req->bindValue(4, $_POST['subjectselect'], PDO::PARAM_INT);
-                $req->bindValue(5, $_POST['speakerselect'], PDO::PARAM_INT);
+                $req->bindValue(5, !$_POST['speakerselect'] === 'null' ? $_POST['speakerselect'] : null, PDO::PARAM_INT);
+                echo (!$_POST['speakerselect'] === 'null' ? $_POST['speakerselect'] : 'null');
+                //die();
+                // var_dump($_POST);
+                // die();
                 if (!$req->execute()) {
                     throw new Error("impossible de créer une date");
                 }
@@ -60,17 +66,17 @@ switch ($_GET['action']) {
             isset($_POST["promoid"]) && !empty($_POST["promoid"]) &&
             isset($_POST["subjectselect"]) && !empty($_POST["subjectselect"])
         ) {
-            var_dump($_POST);
-            die();
+            // var_dump($_POST);
+            // die();
             try {
                 $db->beginTransaction();
                 $sql = "INSERT INTO `dates` ( `date`, `validated`, `promo_id`, `subject_id`, `speaker_id`) VALUES ( ?, ?, ?, ?, ?)";
                 $req = $db->prepare($sql);
                 $req->bindValue(1, strtolower($_POST['dateinput']), PDO::PARAM_STR);
-                $req->bindValue(2, strtolower($_POST['valider']) === "on" ? 1 : 0, PDO::PARAM_INT);
+                $req->bindValue(2, strtolower($_POST['valider']) === "on" && isset($_POST['valider']) ? 1 : 0, PDO::PARAM_INT);
                 $req->bindValue(3, $_POST['promoid'], PDO::PARAM_INT);
                 $req->bindValue(4, $_POST['subjectselect'], PDO::PARAM_INT);
-                $req->bindValue(5, $_POST['speakerselect'], PDO::PARAM_INT);
+                $req->bindValue(5, !$_POST['speakerselect'] === 'null' ? $_POST['speakerselect'] : 'null', PDO::PARAM_INT);
                 if (!$req->execute()) {
                     throw new Error("impossible de créer une date");
                 }
