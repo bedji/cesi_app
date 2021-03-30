@@ -63,8 +63,7 @@ include('./components/db.php');
                 isset($_POST['lastname']) && !empty($_POST['lastname'])
                 && isset($_POST['firstname']) && !empty($_POST['firstname'])
                 && isset($_POST['mail']) && !empty($_POST['mail'])
-                && isset($_POST['telephone']) && !empty($_POST['telephone'])
-                && isset($_POST['subjects']) && !empty($_POST['subjects'])){
+                && isset($_POST['telephone']) && !empty($_POST['telephone'])){
                     $sql = "UPDATE speakers SET lastname=?, firstname=?, mail=?, telephone=? subjects=?";
                     $req = $db->prepare($sql);
                     $req->bindValue(1, strtoupper($_POST['lastname']), PDO::PARAM_STR);

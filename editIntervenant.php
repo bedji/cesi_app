@@ -9,7 +9,7 @@ $req->execute();
 
 $speaker = $req->fetch();
 if (!$speaker) {
-    header('Location: dates.php');
+    header('Location: intervenants.php');
 }
 
 ?>
@@ -32,7 +32,7 @@ if (!$speaker) {
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="./dates.php">Intervenants</a></li>
+                            <li class="breadcrumb-item"><a href="./intervenants.php">Intervenants</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Modifier</li>
                         </ol>
                     </nav>
@@ -71,13 +71,13 @@ if (!$speaker) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-username">Nom</label>
-                                    <input type="text" name="lastname" id="input-username" class="form-control" placeholder="Username" value="<?= $speaker['lastname'] ?>">
+                                    <input type="text" name="lastname" id="input-username" class="form-control" value="<?= $speaker['lastname'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Prénom</label>
-                                    <input type="text" name="firstname" id="input-email" class="form-control" placeholder="jesse@example.com" value="<?= $speaker['firstname'] ?>">
+                                    <input type="text" name="firstname" id="input-email" class="form-control" value="<?= $speaker['firstname'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -85,13 +85,13 @@ if (!$speaker) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-first-name">Mail</label>
-                                    <input type="mail" name="mail" id="input-first-name" class="form-control" placeholder="First name" value="<?= $speaker['mail'] ?>">
+                                    <input type="mail" name="mail" id="input-first-name" class="form-control" value="<?= $speaker['mail'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-last-name">Téléphone</label>
-                                    <input type="tel" name="telephone" id="input-last-name" class="form-control" placeholder="Last name" value="<?= $speaker['telephone'] ?>">
+                                    <input type="tel" name="telephone" id="input-last-name" class="form-control" value="<?= $speaker['telephone'] ?>">
                                 </div>
                             </div>
                         </div>
