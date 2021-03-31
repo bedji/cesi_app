@@ -23,7 +23,7 @@ function initcheck() {
   console.log(selectpeaker.value);
   if (selectpeaker.value === "null") {
     validechek.disabled = true;
-    return;
+    // return;
   } else {
     validechek.disabled = false;
   }
@@ -55,3 +55,4 @@ function remplirspeaker(donnee) {
   initcheck();
 }
 //selectsubject.addEventListener("onload", initcheck());
+//initcheck();
