@@ -53,4 +53,4 @@ function remplirspeaker(donnee) {
   });
   initcheck();
 }
-selectsubject.addEventListener("onload", initcheck());
+//selectsubject.addEventListener("onload", initcheck());

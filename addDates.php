@@ -111,7 +111,7 @@ include("./components/db.php");
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input name="valider" type="checkbox" class="custom-control-input" id="speakervalid">
+                                        <input name="valider" type="checkbox" disabled class="custom-control-input" id="speakervalid">
                                         <label class="custom-control-label" for="speakervalid">Date Validé</label>
                                     </div>
                                 </div>

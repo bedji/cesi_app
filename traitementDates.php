@@ -70,18 +70,26 @@ switch ($_GET['action']) {
             // die();
             try {
                 $db->beginTransaction();
-                $sql = "INSERT INTO `dates` ( `date`, `validated`, `promo_id`, `subject_id`, `speaker_id`) VALUES ( ?, ?, ?, ?, ?)";
+                //UPDATE `dates` SET `validated` = '1', `speaker_id` = '33' WHERE `dates`.`id` = 46 
+                $sql = "UPDATE `dates` SET `date`=? , `validated`=?, `promo_id`=?, `subject_id`=?, `speaker_id`= ? WHERE `dates`.`id` =" . $_GET['id'];
                 $req = $db->prepare($sql);
                 $req->bindValue(1, strtolower($_POST['dateinput']), PDO::PARAM_STR);
-                $req->bindValue(2, strtolower($_POST['valider']) === "on" && isset($_POST['valider']) ? 1 : 0, PDO::PARAM_INT);
+                $req->bindValue(2, isset($_POST['valider']) && $_POST['valider'] === "on" ? 1 : 0, PDO::PARAM_INT);
                 $req->bindValue(3, $_POST['promoid'], PDO::PARAM_INT);
                 $req->bindValue(4, $_POST['subjectselect'], PDO::PARAM_INT);
-                $req->bindValue(5, !$_POST['speakerselect'] === 'null' ? $_POST['speakerselect'] : 'null', PDO::PARAM_INT);
+                $req->bindValue(5, !$_POST['speakerselect'] === null ? $_POST['speakerselect'] : null, PDO::PARAM_INT);
+                var_dump($_POST) . "<br />\n";
+                $leresultat = $_POST['speakerselect'] !== null ? $_POST['speakerselect'] : null;
+                echo ("resultat= " . $leresultat);
+                echo ("<br />\n speaker_id = " . $_POST['speakerselect']);
+                //var_dump($req)  . "<br />\n";
+                die();
                 if (!$req->execute()) {
-                    throw new Error("impossible de créer une date");
+
+                    throw new Error("impossible de modifier la date  ");
                 }
                 $db->commit();
-                header('Location: dates.php?notif=vous avez ajouté votre date&type=success');
+                header('Location: dates.php?notif=Votre date a bien ete modifier&type=success');
             } catch (\Throwable $th) {
                 $db->rollBack();
                 header('Location: dates.php?notif=' . $th->getMessage() . '&type=danger');
