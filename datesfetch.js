@@ -24,8 +24,9 @@ function initcheck() {
   if (selectpeaker.value === "null") {
     validechek.disabled = true;
     return;
+  } else {
+    validechek.disabled = false;
   }
-  validechek.disabled = false;
 }
 async function getspeakers(subjecid) {
   let res = await fetch("/cesi/cesi_app/codejson.php?id=" + subjecid, {

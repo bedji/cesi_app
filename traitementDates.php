@@ -44,7 +44,7 @@ switch ($_GET['action']) {
 
                 $req->bindValue(3, $_POST['promoid'], PDO::PARAM_INT);
                 $req->bindValue(4, $_POST['subjectselect'], PDO::PARAM_INT);
-                $req->bindValue(5, !$_POST['speakerselect'] === 'null' ? $_POST['speakerselect'] : null, PDO::PARAM_INT);
+                $req->bindValue(5, $_POST['speakerselect'] !== 'null' ? $_POST['speakerselect'] : null, PDO::PARAM_INT);
                 echo (!$_POST['speakerselect'] === 'null' ? $_POST['speakerselect'] : 'null');
                 //die();
                 // var_dump($_POST);
@@ -77,12 +77,12 @@ switch ($_GET['action']) {
                 $req->bindValue(2, isset($_POST['valider']) && $_POST['valider'] === "on" ? 1 : 0, PDO::PARAM_INT);
                 $req->bindValue(3, $_POST['promoid'], PDO::PARAM_INT);
                 $req->bindValue(4, $_POST['subjectselect'], PDO::PARAM_INT);
-                $req->bindValue(5, !$_POST['speakerselect'] === null ? $_POST['speakerselect'] : null, PDO::PARAM_INT);
+                $req->bindValue(5, $_POST['speakerselect'] !== null ? $_POST['speakerselect'] : null, PDO::PARAM_INT);
                 var_dump($_POST) . "<br />\n";
                 $leresultat = $_POST['speakerselect'] !== null ? $_POST['speakerselect'] : null;
                 echo ("resultat= " . $leresultat);
                 echo ("<br />\n speaker_id = " . $_POST['speakerselect']);
-                //var_dump($req)  . "<br />\n";
+                echo (isset($_POST['valider']) && $_POST['valider'] === "on" ? 1 : 0)  . "<br />\n";
                 die();
                 if (!$req->execute()) {
 
