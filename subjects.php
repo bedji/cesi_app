@@ -9,12 +9,11 @@ $req->execute();
 $subjects = $req->fetchAll();
 
 
-$sql2 = "SELECT * FROM speakers";
+$sql2 = "SELECT * FROM speakers JOIN speakers_subjects ON speaker_id = speakers_subjects.subject_id WHERE speakers.id=" . $_GET['id'];
 $req = $db->prepare($sql2);
 $req->execute();
 
 $speakers = $req->fetch();
-
 ?>
 
 <!-- Header -->

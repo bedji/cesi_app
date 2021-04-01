@@ -104,6 +104,14 @@ include("./components/db.php");
                                     <label class="form-control-label" for="exampleFormControlSelect1">Intervenant</label>
                                     <select class="form-control" name='speakerselect' id="speakerselect">
                                         <option value="null" disabled selected>Sélectionner un intervenant</option>
+                                        <?php 
+                                            $sql2 = "SELECT * FROM speakers";
+                                            $req2 = $db->prepare($sql2);
+                                            $req2->execute();
+                                            $speakers = $req2->fetchAll();
+                                            foreach ($speakers as $key => $speaker) {
+                                            echo "<option value=" . $speaker['id'] . ">" . $speaker['lastname'] . " " . $speaker['firstname'] . "</option>";
+                                        } ?>
                                     </select>
                                 </div>
                             </div>

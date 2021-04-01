@@ -69,7 +69,7 @@ include("./components/db.php");
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-description">Intervenant</label>
                                     <select name="speaker" id="input-speaker" class="form-control">
-                                    <option selected value=""></option>
+                                    <option selected>Séléctionnez un intervenant</option>
                                         <?php 
                                             $sql = "SELECT * FROM speakers";
                                             $req = $db->prepare($sql);

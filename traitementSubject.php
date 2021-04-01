@@ -24,8 +24,8 @@ switch ($_GET['action']) {
     case 'add':
         if (
             isset($_POST['name']) && !empty($_POST['name'])
-            && isset($_POST['description']) && !empty($_POST['description'])
-        ) {
+            && isset($_POST['description']) && !empty($_POST['description'])){
+                
             $sql = "INSERT INTO subjects (name, description) VALUE (?, ?)";
             $req = $db->prepare($sql);
             $req->bindValue(1, ucfirst($_POST['name']), PDO::PARAM_STR);
@@ -37,7 +37,8 @@ switch ($_GET['action']) {
             }
         }
     case 'edit':
-        if (isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['description']) && !empty($_POST['description'])) {
+        if (isset($_POST['name']) && !empty($_POST['name']) 
+            && isset($_POST['description']) && !empty($_POST['description'])) {
             $sql = "UPDATE subjects SET name=?, description=? WHERE id=" . $_GET['id'];
 
             $req = $db->prepare($sql);

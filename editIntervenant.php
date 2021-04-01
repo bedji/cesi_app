@@ -12,6 +12,19 @@ if (!$speaker) {
     header('Location: intervenants.php');
 }
 
+$sql = "SELECT * FROM subjects";
+$req = $db->prepare($sql);
+$req->execute();
+$subjects = $req->fetchAll(); 
+$sql2 = "SELECT subject_id, subjects.name AS sub_name FROM speakers_subjects JOIN subjects ON subjects.id=speakers_subjects.subject_id WHERE speaker_id=" . $_GET['id'];
+$req = $db->prepare($sql2);
+$req->execute();
+$data = $req->fetchAll();
+$matching_subjects = [];
+foreach ($data as $key => $sub) {
+    array_push($matching_subjects, $sub['subject_id']);
+}
+
 ?>
 
 <!-- Header -->
@@ -108,12 +121,11 @@ if (!$speaker) {
                                             </div>
                                             <div id="checkboxes">
                                             <?php
-                                                $sql = "SELECT * FROM subjects";
-                                                $req = $db->prepare($sql);
-                                                $req->execute();
-                                                $subjects = $req->fetchAll();
                                                 foreach ($subjects as $key => $subject) { ?>
-                                                <label for="<?= $subject['id']?>"><input name="subjects[]" type="checkbox" id="<?= $subject['id']?>" value="<?= $subject['id']?>" />&nbsp;<?= $subject['name']?></label>
+                                                <label for="<?= $subject['id']?>">
+                                                    <input name="subjects[]" <?= in_array($subject['id'], $matching_subjects) ? 'checked' : '' ?> type="checkbox" id="<?= $subject['id']?>" value="<?= $subject['id']?>" />
+                                                    &nbsp;<?= $subject['name']?>
+                                                </label>
                                             <?php } ?>
                                             </div>
                                         </div>

@@ -10,11 +10,11 @@ $req->execute();
 $subject = $req->fetch();
 
 
-$sql2 = "SELECT * FROM speakers WHERE id=$id";
+$sql2 = "SELECT * FROM speakers";
 $req = $db->prepare($sql2);
 $req->execute();
 
-$speakers = $req->fetch();
+$speakers = $req->fetchAll();
 ?>
 
 <!-- Header -->
@@ -81,9 +81,14 @@ $speakers = $req->fetch();
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-description">Intervenant</label>
+                                    <label class="form-control-label" for="input-speaker">Intervenant</label>
+                                    <input type="checkbox" name="input-speaker" id="input-speaker">
                                     <select name="speaker" id="input-speaker" class="form-control">
-                                    <option selected value="<?= $speakers['lastname'] . " " . $speakers['firstname'] ?>"></option>
+                                    <option selected disabled>Sélectionnez un intervenant</option>
+                                    <?php 
+                                        foreach ($speakers as $key => $speaker) { ?>
+                                            <option selected value="<?= $speaker['id'] ?>"><?= $speaker['lastname'] . " " . $speaker['firstname'] ?></option>
+                                    <?php } ?>
                                     </select>
                                 </div>
                             </div>
