@@ -12,6 +12,19 @@ if (!$speaker) {
     header('Location: intervenants.php');
 }
 
+$sql = "SELECT * FROM subjects";
+$req = $db->prepare($sql);
+$req->execute();
+$subjects = $req->fetchAll(); 
+$sql2 = "SELECT subject_id, subjects.name AS sub_name FROM speakers_subjects JOIN subjects ON subjects.id=speakers_subjects.subject_id WHERE speaker_id=" . $_GET['id'];
+$req = $db->prepare($sql2);
+$req->execute();
+$data = $req->fetchAll();
+$matching_subjects = [];
+foreach ($data as $key => $sub) {
+    array_push($matching_subjects, $sub['subject_id']);
+}
+
 ?>
 
 <!-- Header -->
@@ -71,13 +84,13 @@ if (!$speaker) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-username">Nom</label>
-                                    <input type="text" name="lastname" id="input-username" class="form-control" placeholder="Username" value="<?= $speaker['lastname'] ?>">
+                                    <input type="text" name="lastname" id="input-username" class="form-control" value="<?= $speaker['lastname'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Prénom</label>
-                                    <input type="text" name="firstname" id="input-email" class="form-control" placeholder="jesse@example.com" value="<?= $speaker['firstname'] ?>">
+                                    <input type="text" name="firstname" id="input-email" class="form-control" value="<?= $speaker['firstname'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -85,29 +98,41 @@ if (!$speaker) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-first-name">Mail</label>
-                                    <input type="mail" name="mail" id="input-first-name" class="form-control" placeholder="First name" value="<?= $speaker['mail'] ?>">
+                                    <input type="mail" name="mail" id="input-first-name" class="form-control" value="<?= $speaker['mail'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-last-name">Téléphone</label>
-                                    <input type="tel" name="telephone" id="input-last-name" class="form-control" placeholder="Last name" value="<?= $speaker['telephone'] ?>">
+                                    <input type="tel" name="telephone" id="input-last-name" class="form-control" value="<?= $speaker['telephone'] ?>">
                                 </div>
                             </div>
-                            <!-- liste ici  -->
-
-                            <div class="form-group">
-                                <label for="choiSubject">Example multiple select</label>
-                                <select multiple class="form-control" id="choiSubject">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-subjects">Matières</label>
+                                        <div>
+                                            <div class="selectBox" onclick="showCheckboxes()">
+                                            <select class="form-control">
+                                                <option selected disabled>Selectionnez une matière</option>
+                                            </select>
+                                            <div class="overSelect"></div>
+                                            </div>
+                                            <div id="checkboxes">
+                                            <?php
+                                                foreach ($subjects as $key => $subject) { ?>
+                                                <label for="<?= $subject['id']?>">
+                                                    <input name="subjects[]" <?= in_array($subject['id'], $matching_subjects) ? 'checked' : '' ?> type="checkbox" id="<?= $subject['id']?>" value="<?= $subject['id']?>" />
+                                                    &nbsp;<?= $subject['name']?>
+                                                </label>
+                                            <?php } 
+                                                // var_dump($data);
+                                            ?>
+                                            </div>
+                                        </div>
+                                </div>
                             </div>
-                            <!-- Build your select: -->
-
                         </div>
                         <div class="d-flex justify-content-between">
                             <a href="./intervenants.php" class="btn btn-warning">Retour</a>
