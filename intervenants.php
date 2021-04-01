@@ -69,10 +69,9 @@ function getSsubjects($db, $speakerId)
             <thead class="thead-light">
               <tr class="text-center">
                 <th>Intervenant</th>
-                <th>ID</th>
                 <th>Mail</th>
                 <th>Téléphone</th>
-                <th>Matiéres </th>
+                <th>Matières </th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -80,11 +79,8 @@ function getSsubjects($db, $speakerId)
               <?php foreach ($speakers as $key => $speaker) { ?>
                 <tr class="text-center">
                   <th scope="row">
-                    <?= $speaker['firstname'] . " " . $speaker['lastname']; ?>
+                    <?= $speaker['lastname'] . " " . $speaker['firstname']; ?>
                   </th>
-                  <td class="budget">
-                    <?= $speaker['id']; ?>
-                  </td>
                   <td>
                     <?= $speaker['mail']; ?>
                   </td>
@@ -95,9 +91,6 @@ function getSsubjects($db, $speakerId)
                     <?php
 
                     foreach (getSsubjects($db, $speaker['id']) as $key => $matiere) {
-
-
-
                     ?>
                       <a href="./editSubject.php?id=<?= $matiere['id']   ?>" class=".badge-md badge-pill badge-default"><?= $matiere['name']   ?></a>
 

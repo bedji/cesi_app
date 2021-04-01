@@ -126,9 +126,7 @@ foreach ($data as $key => $sub) {
                                                     <input name="subjects[]" <?= in_array($subject['id'], $matching_subjects) ? 'checked' : '' ?> type="checkbox" id="<?= $subject['id']?>" value="<?= $subject['id']?>" />
                                                     &nbsp;<?= $subject['name']?>
                                                 </label>
-                                            <?php } 
-                                                // var_dump($data);
-                                            ?>
+                                            <?php } ?>
                                             </div>
                                         </div>
                                 </div>
