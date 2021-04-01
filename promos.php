@@ -5,12 +5,15 @@ include("./components/db.php");
 $sql = "SELECT * FROM promos";
 $req = $db->prepare($sql);
 $req->execute();
+$promos = $req->fetchAll();
+
+
+
+
 $url = "http://www.mandor.fr/media/02/00/3087535740.jpg";
 $default = "../../Cesi/cesi_app/assets/img/theme/sketch.jpg";
 $size = 30;
 $email = "badrou14@yahoo.fr";
-
-$promos = $req->fetchAll();
 $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . urlencode($url) . "&s=" . $size;
 ?>
 
@@ -81,55 +84,44 @@ $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) .
                     <?= $promo['name']; ?>
                   </th>
                   <td>
-                    <?= $promo['studentsNumber']; ?>
+
+                    <?php
+
+                    $sql = "SELECT * FROM students WHERE promo_id=" . $promo['id'];
+                    $req = $db->prepare($sql);
+                    $req->execute();
+                    $students = $req->fetchAll();
+                    echo count($students);
+
+                    ?>
                   </td>
                   <td>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div class="avatar-group">
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                        <img alt="Image placeholder" src="<?php echo $grav_url; ?>">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                        <img alt="Image placeholder" src="<?= $default ?>">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-3.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="my avatar">
-                        <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $promo['id'] ?>.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
+                      <?php
+                      foreach ($students as  $student) { ?>
+                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="<?= $student['firstname'] ?>">
+                          <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $student['id'] ?>.jpg">
+                        </a>
+                      <?php
+                      }
+                      ?>
+
                     </div>
+
+
+
+                    <!-- <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
+                      <img alt="Image placeholder" src="<?php echo $grav_url; ?>">
+                    </a> -->
+
+
+
+
+
+
+
+
+
 
 
 
@@ -140,8 +132,8 @@ $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) .
                   </td>
                   <td>
                     <div class="text-center">
-                      <a class="btn btn-danger col-2" href="./traitementPromos.php?action=delete&id=<?= $promo['id']; ?>">X</a>
-                      <a class="btn btn-warning col-5" href="./editPromo.php?id=<?= $promo['id']; ?>">Modifier</a>
+                      <a class="btn btn-danger col-2" href="./traitementPromos.php?action=delete&id=<?= $promo['id'] ?>">X</a>
+                      <a class="btn btn-warning col-5" href="./editPromo.php?id=<?= $promo['id'] ?>">Modifier</a>
                     </div>
                   </td>
                 </tr>

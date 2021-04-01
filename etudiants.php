@@ -87,10 +87,12 @@ $students = $req->fetchAll();
                     $req2 = $db->prepare($sql2);
                     $req2->execute();
                     $promos = $req2->fetch();
-                    echo "<a href='./calendarPromo.php?id='" . $promos['id'] . "'>" . $promos['name'] . "</a>"; ?>
+                    ?>
+                    <a href='./calendarPromo.php?id=<?= $promos['id'] ?>'> <?= $promos['name'] ?> </a>
+
                   </td>
                   <td>
-                    <div class="text-center">
+                    <div class=" text-center">
                       <a class="btn btn-danger col-2" href="./traitementEtudiants.php?action=delete&id=<?= $student['id']; ?>">X</a>
                       <a class="btn btn-warning col-5" href="./editetudiants.php?id=<?= $student['id']; ?>">Modifier</a>
                     </div>
