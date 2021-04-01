@@ -69,7 +69,7 @@ $students = $req->fetchAll();
             <tbody class="list">
               <?php foreach ($students as $key => $student) { ?>
                 <tr class="text-center">
-                  <th><a href="./ficheEtudiant.php?id=<?= $student['id'] ?>" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="my avatar">
+                  <th><a href="./ficheEtudiant.php?id=<?= $student['id'] ?>" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="<?= $student['firstname'] . " " . $student['lastname'] ?> ">
                       <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $student['id'] ?>.jpg">
                     </a></th>
                   <th scope="row">
