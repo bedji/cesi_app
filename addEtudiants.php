@@ -13,7 +13,7 @@ include("./components/db.php");
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="./intervenants.php">Intervenants</a></li>
+                            <li class="breadcrumb-item"><a href="./etudiants.php">Etudiants</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Ajout</li>
                         </ol>
                     </nav>
@@ -42,12 +42,12 @@ include("./components/db.php");
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Ajouter intervenant </h3>
+                        <h3 class="mb-0">Ajouter étudiant </h3>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <form action="./traitementInt.php?action=add" method="POST">
+                <form action="./traitementEtudiants.php?action=add" method="POST">
                     <h6 class="heading-small text-muted mb-4">User information</h6>
                     <div class="pl-lg-12">
                         <div class="row">
@@ -72,39 +72,22 @@ include("./components/db.php");
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-last-name">Téléphone</label>
-                                    <input type="tel" name="telephone" id="input-last-name" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-subjects">Matières</label>
-                                        <div>
-                                            <div class="selectBox" onclick="showCheckboxes()">
-                                            <select class="form-control">
-                                                <option selected disabled>Selectionnez une matière</option>
-                                            </select>
-                                            <div class="overSelect"></div>
-                                            </div>
-                                            <div id="checkboxes">
-                                            <?php
-                                                $sql = "SELECT * FROM subjects";
-                                                $req = $db->prepare($sql);
-                                                $req->execute();
-                                                $subjects = $req->fetchAll();
-                                                foreach ($subjects as $key => $subject) { ?>
-                                                <label for="<?= $subject['id']?>"><input name="subjects[]" type="checkbox" id="<?= $subject['id']?>" value="<?= $subject['id']?>" />&nbsp;<?= $subject['name']?></label>
-                                            <?php } ?>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
+                                <label class="form-control-label" for="exampleFormControlSelect1">Promotion</label>
+                                <select class="form-control" name='promo_id' id="subjectselect">
+                                    <option disabled selected>Sélectionner une Promo</option>
+                                    <?php
+                                    $sql = "SELECT * FROM promos";
+                                    $req = $db->prepare($sql);
+                                    $req->execute();
+                                    $promos = $req->fetchAll();
+                                    foreach ($promos as $key => $promo) { ?>
+                                        <option value="<?= $promo['id'] ?>"><?= $promo['name'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>   
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href="./intervenants.php" class="btn btn-warning">Retour</a>
+                            <a href="./etudiants.php" class="btn btn-warning">Retour</a>
                             <input type="submit" class="btn btn-success" value="Valider">
                         </div>
                     </div>
@@ -123,14 +106,3 @@ include("./components/db.php");
     </div>
 
     <?php include("./components/footer.php") ?>
-    <!-- <select type="subjects" name="subjects" id="input-subjects" class="form-control">
-                                        <option disabled selected>Sélectionner une matière</option>
-                                        <?php
-                                            $sql = "SELECT * FROM subjects";
-                                            $req = $db->prepare($sql);
-                                            $req->execute();
-                                            $subjects = $req->fetchAll();
-                                            foreach ($subjects as $key => $subject) { ?>
-                                            <option value="<?= $subject['id'] ?>"> <?= $subject['name'] ?></option>
-                                        <?php } ?>
-                                    </select> -->

@@ -5,8 +5,13 @@ include("./components/db.php");
 $sql = "SELECT * FROM promos";
 $req = $db->prepare($sql);
 $req->execute();
+$url = "http://www.mandor.fr/media/02/00/3087535740.jpg";
+$default = "../../Cesi/cesi_app/assets/img/theme/sketch.jpg";
+$size = 30;
+$email = "badrou14@yahoo.fr";
 
 $promos = $req->fetchAll();
+$grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . urlencode($url) . "&s=" . $size;
 ?>
 
 <!-- Header -->
@@ -98,10 +103,10 @@ $promos = $req->fetchAll();
 
                     <div class="avatar-group">
                       <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-1.jpg">
+                        <img alt="Image placeholder" src="<?php echo $grav_url; ?>">
                       </a>
                       <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-2.jpg">
+                        <img alt="Image placeholder" src="<?= $default ?>">
                       </a>
                       <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
                         <img alt="Image placeholder" src="./assets/img/theme/team-3.jpg">

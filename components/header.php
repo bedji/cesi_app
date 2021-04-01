@@ -59,6 +59,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="./etudiants.php">
+                                <i class="ni ni-single-02 text-primary"></i>
+                                <span class="nav-link-text">Étudiants</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="./promos.php">
                                 <i class="ni ni-hat-3 text-primary"></i>
                                 <span class="nav-link-text">Promotions</span>
