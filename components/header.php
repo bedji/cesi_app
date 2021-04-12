@@ -49,7 +49,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="index.php">
                                 <i class="ni ni-calendar-grid-58 text-primary"></i>
-                                <span class="nav-link-text">TablePormos</span>
+                                <span class="nav-link-text">Accueil</span>
                             </a>
                         </li>
                         <li class="nav-item">
