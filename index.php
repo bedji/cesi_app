@@ -75,7 +75,7 @@ $promos = $req->fetchAll();
                   </div>
                 </div>
                 <div class="mt-4">
-                  <a type="button" href="./promos.php?id=<?= $promo['id']; ?>" class="btn btn-primary text-white">Détails</a>
+                  <a type="button" href="./promoStudents.php?id=<?= $promo['id']; ?>" class="btn btn-primary text-white">Détails</a>
                   <a type="button" href="./editPromo.php?id=<?= $promo['id']; ?>" class="btn btn-warning text-white">Modifier</a>
                   <a type="button" href="./traitementPromo.php?action=delete&id=<?= $promo['id']; ?>" class="btn btn-danger text-white">Supprimer</a>
                 </div>
