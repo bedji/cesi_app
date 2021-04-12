@@ -25,7 +25,7 @@ $promos = $req->fetchAll();
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
-          <a href="./addPromo.php" class="btn btn-sm btn-neutral">New</a>
+          <a href="./addPromo.php" class="btn btn-sm btn-neutral">Ajouter une promotion</a>
         </div>
       </div>
       <!-- Card stats -->
