@@ -15,7 +15,7 @@ if (!$speaker) {
 $sql = "SELECT * FROM subjects";
 $req = $db->prepare($sql);
 $req->execute();
-$subjects = $req->fetchAll(); 
+$subjects = $req->fetchAll();
 $sql2 = "SELECT subject_id, subjects.name AS sub_name FROM speakers_subjects JOIN subjects ON subjects.id=speakers_subjects.subject_id WHERE speaker_id=" . $_GET['id'];
 $req = $db->prepare($sql2);
 $req->execute();
@@ -41,7 +41,7 @@ foreach ($data as $key => $sub) {
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">CESI Reims</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
@@ -112,23 +112,23 @@ foreach ($data as $key => $sub) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-subjects">Matières</label>
-                                        <div>
-                                            <div class="selectBox" onclick="showCheckboxes()">
+                                    <div>
+                                        <div class="selectBox" onclick="showCheckboxes()">
                                             <select class="form-control">
                                                 <option selected disabled>Selectionnez une matière</option>
                                             </select>
                                             <div class="overSelect"></div>
-                                            </div>
-                                            <div id="checkboxes">
+                                        </div>
+                                        <div id="checkboxes">
                                             <?php
-                                                foreach ($subjects as $key => $subject) { ?>
-                                                <label for="<?= $subject['id']?>">
-                                                    <input name="subjects[]" <?= in_array($subject['id'], $matching_subjects) ? 'checked' : '' ?> type="checkbox" id="<?= $subject['id']?>" value="<?= $subject['id']?>" />
-                                                    &nbsp;<?= $subject['name']?>
+                                            foreach ($subjects as $key => $subject) { ?>
+                                                <label for="<?= $subject['id'] ?>">
+                                                    <input name="subjects[]" <?= in_array($subject['id'], $matching_subjects) ? 'checked' : '' ?> type="checkbox" id="<?= $subject['id'] ?>" value="<?= $subject['id'] ?>" />
+                                                    &nbsp;<?= $subject['name'] ?>
                                                 </label>
                                             <?php } ?>
-                                            </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -28,7 +28,7 @@ if (!$student) {
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">CESI Reims</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
@@ -82,48 +82,48 @@ if (!$student) {
                             </div>
                         </div>
                         <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-first-name">Mail</label>
-                                        <input type="mail" name="mail" id="input-first-name" class="form-control" placeholder="jesse@example.com" value="<?= $student['mail'] ?>">
-                                    </div>
-                                </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                        <label class="form-control-label" for="exampleFormControlSelect1">Promotion</label>
-                                        <select class="form-control" name='subjectselect' id="subjectselect">
-                                            <option disabled selected>Sélectionner une Promotion</option>
-                                            <?php
-                                            $sql = "SELECT * FROM subjects";
-                                            $req = $db->prepare($sql);
-                                            $req->execute();
-                                            $subjects = $req->fetchAll();
-                                                foreach ($subjects as $key => $subject) { ?>
-                                                <option value="<?= $subject['id'] ?>"> <?= $subject['name'] ?></option>
-                                            <?php } ?>
-                                        </select>
+                                    <label class="form-control-label" for="input-first-name">Mail</label>
+                                    <input type="mail" name="mail" id="input-first-name" class="form-control" placeholder="jesse@example.com" value="<?= $student['mail'] ?>">
                                 </div>
                             </div>
-                        </div> 
-                            
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="exampleFormControlSelect1">Promotion</label>
+                                    <select class="form-control" name='subjectselect' id="subjectselect">
+                                        <option disabled selected>Sélectionner une Promotion</option>
+                                        <?php
+                                        $sql = "SELECT * FROM subjects";
+                                        $req = $db->prepare($sql);
+                                        $req->execute();
+                                        $subjects = $req->fetchAll();
+                                        foreach ($subjects as $key => $subject) { ?>
+                                            <option value="<?= $subject['id'] ?>"> <?= $subject['name'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <a href="./etudiants.php" class="btn btn-warning">Retour</a>
-                            <a href="./etudiants.php"  class="btn btn-success">Valider la modification</a>
-                        </div>
+
                     </div>
-                </form>
+                    <div class="d-flex justify-content-between">
+                        <a href="./etudiants.php" class="btn btn-warning">Retour</a>
+                        <a href="./etudiants.php" class="btn btn-success">Valider la modification</a>
+                    </div>
             </div>
-
-
+            </form>
         </div>
 
-        <!---------------------------------------------------------------------------------------------------------------------------
+
+    </div>
+
+    <!---------------------------------------------------------------------------------------------------------------------------
 
                                                 METTRE LE CONTENU DE VOTRE PAGE CI-DESSUS
 
       --------------------------------------------------------------------------------------------------------------------------->
-    </div>
+</div>
 
-    <?php include("./components/footer.php") ?>
+<?php include("./components/footer.php") ?>
