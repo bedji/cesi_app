@@ -91,7 +91,7 @@ if (!$student) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Promotion</label>
-                                    <select class="form-control" name='subjectselect' id="subjectselect">
+                                    <select class="form-control" name='subjectselect' id="promo_id">
                                         <option disabled selected>Sélectionner une Promotion</option>
                                         <?php
                                         $sql = "SELECT * FROM promos";

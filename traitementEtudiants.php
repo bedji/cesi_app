@@ -64,6 +64,9 @@ switch ($_GET['action']) {
             && isset($_POST['firstname']) && !empty($_POST['firstname'])
             && isset($_POST['mail']) && !empty($_POST['mail'])
         ) {
+            var_dump($_POST);
+            die();
+            $promos = isset($_POST["promo_id"]) ? $_POST["promo_id"] : [];
             $sql = "UPDATE speakers SET lastname=?, firstname=?, mail=?";
             $req = $db->prepare($sql);
             $req->bindValue(1, strtolower($_POST['lastname']), PDO::PARAM_STR);
