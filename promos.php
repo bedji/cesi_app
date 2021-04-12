@@ -132,7 +132,7 @@ $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) .
                   </td>
                   <td>
                     <div class="text-center">
-                      <a class="btn btn-danger col-2" href="./traitementPromos.php?action=delete&id=<?= $promo['id'] ?>">X</a>
+                      <a class="btn btn-danger col-2" href="./traitementPromo.php?action=delete&id=<?= $promo['id'] ?>">X</a>
                       <a class="btn btn-warning col-5" href="./editPromo.php?id=<?= $promo['id'] ?>">Modifier</a>
                     </div>
                   </td>

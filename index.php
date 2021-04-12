@@ -59,10 +59,10 @@ $promos = $req->fetchAll();
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0 text-white">
-                      <?= $promo['name']; ?>
+                      <?= $promo['ref']; ?>
                     </h5>
                     <p class="h2 font-weight-bold mb-0 text-white">
-                      <?= $promo['ref']; ?>
+                      <?= $promo['name']; ?>
                     </p>
                     <p class="h2 font-weight-bold mb-0 text-white">
                       <?= $promo['studentsNumber']; ?> étudiants

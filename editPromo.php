@@ -66,19 +66,19 @@ $promo = $req->fetch();
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-email">Nombre d'étudiants</label>
-                                    <input type="number" name="studentsNumber" id="input-studentsNumber" class="form-control" value="<?= $promo['studentsNumber'] ?>">
+                                    <label class="form-control-label" for="input-first-name">Référence</label>
+                                    <input type="text" name="ref" id="input-ref" class="form-control" value="<?= $promo['ref'] ?>">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-first-name">Référence</label>
                                     <input type="text" name="ref" id="input-ref" class="form-control" value="<?= $promo['ref'] ?>">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="d-flex justify-content-between">
                             <a href="./promos.php" class="btn btn-warning">Retour</a>
                             <input type="submit" class="btn btn-success" value="Valider">
