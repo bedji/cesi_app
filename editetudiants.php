@@ -32,7 +32,7 @@ if (!$student) {
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="./addetudiants.php">Etudiants</a></li>
+                            <li class="breadcrumb-item"><a href="./etudiants.php">Etudiants</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Modifier</li>
                         </ol>
                     </nav>
@@ -94,12 +94,12 @@ if (!$student) {
                                     <select class="form-control" name='subjectselect' id="subjectselect">
                                         <option disabled selected>Sélectionner une Promotion</option>
                                         <?php
-                                        $sql = "SELECT * FROM subjects";
+                                        $sql = "SELECT * FROM promos";
                                         $req = $db->prepare($sql);
                                         $req->execute();
-                                        $subjects = $req->fetchAll();
-                                        foreach ($subjects as $key => $subject) { ?>
-                                            <option value="<?= $subject['id'] ?>"> <?= $subject['name'] ?></option>
+                                        $promos = $req->fetchAll();
+                                        foreach ($promos as $key => $promo) { ?>
+                                            <option <?= $promo['id'] === $student['promo_id'] ? "selected" : "" ?> value="<?= $promo['id'] ?>"> <?= $promo['name'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
