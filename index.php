@@ -65,7 +65,18 @@ $promos = $req->fetchAll();
                       <?= $promo['name']; ?>
                     </p>
                     <p class="h2 font-weight-bold mb-0 text-white">
-                      <?= $promo['studentsNumber']; ?> étudiants
+                      <!-- <?= $promo['studentsNumber']; ?>  -->
+                      <?php
+
+                      $sql = "SELECT * FROM students WHERE promo_id=" . $promo['id'];
+                      $req = $db->prepare($sql);
+                      $req->execute();
+                      $students = $req->fetchAll();
+                      echo count($students);
+
+                      ?>
+
+                      étudiants
                     </p>
                   </div>
                   <div class="col-auto">

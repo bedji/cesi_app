@@ -72,7 +72,7 @@ switch ($_GET['action']) {
                 // var_dump($_GET['id']);
                 // die();
                 $db->beginTransaction();
-                // UPDATE students SET lastname="bedji", firstname="badrou", mail='badrou14@yahoo.fr' promo_id="1" WHERE id =2
+
                 $sql = " UPDATE `students` SET `firstname` = ?, `lastname` = ?, `mail` = ?, `promo_id` = ? WHERE `students`.`id` =  " . $id;
                 // $sql = "UPDATE students SET lastname=?, firstname=?, mail=? promo_id=? WHERE `students.id` =" . $id;
                 $req = $db->prepare($sql);
@@ -97,4 +97,3 @@ switch ($_GET['action']) {
         header('Location: index.php');
         break;
 }
-
