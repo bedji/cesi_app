@@ -66,19 +66,23 @@ include('./components/db.php');
                 if (isset($_POST['lastname']) && !empty($_POST['lastname'])
                 && isset($_POST['firstname']) && !empty($_POST['firstname'])
                 && isset($_POST['mail']) && !empty($_POST['mail'])
+
                 && isset($_POST['telephone']) && !empty($_POST['telephone'])){
                 try {
                     $subjects = isset($_POST["subjects"]) ? $_POST["subjects"] : [];
                     $db->beginTransaction();
                     $sql = "UPDATE speakers SET lastname=?, firstname=?, mail=?, telephone=? WHERE id =" . intval($id);
+
                     $req = $db->prepare($sql);
                     $req->bindValue(1, strtoupper($_POST['lastname']), PDO::PARAM_STR);
                     $req->bindValue(2, ucfirst($_POST['firstname']), PDO::PARAM_STR);
                     $req->bindValue(3, $_POST['mail'], PDO::PARAM_STR);
                     $req->bindValue(4, $_POST['telephone'], PDO::PARAM_STR);
+
             
                     if (!$req->execute()) {
                         throw new Error("impossible de créer un intervenant");
+
                     }
 
                     foreach ($subjects as $key => $subID) {

@@ -1,4 +1,6 @@
-<?php
+
+<?php 
+
 include("./components/header.php");
 include("./components/db.php");
 ?>
@@ -9,7 +11,9 @@ include("./components/db.php");
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
+
                     <h6 class="h2 text-white d-inline-block mb-0">CESI Reims </h6>
+
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -84,7 +88,10 @@ include("./components/db.php");
                                         <option value="<?= $promo['id'] ?>"><?= $promo['name'] ?></option>
                                     <?php } ?>
                                 </select>
+
                             </div>
+
+ 
                         </div>
                         <div class="d-flex justify-content-between">
                             <a href="./etudiants.php" class="btn btn-warning">Retour</a>

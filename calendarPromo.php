@@ -14,6 +14,16 @@ if (!$promo) {
   header("Location: ./index.php");
 }
 
+$sql2 = "SELECT * FROM speakers";
+$req2 = $db->prepare($sql2);
+$req2->execute();
+$speakers = $req2->fetchAll();
+
+$sql3 = "SELECT * FROM subjects";
+$req3 = $db->prepare($sql3);
+$req3->execute();
+$subjects = $req3->fetchAll();
+
 include("./components/header.php");
 ?>
 <div class="main-content" id="panel">
@@ -76,8 +86,20 @@ include("./components/header.php");
                 <div class="modal-body">
                   <form class="new-event--form">
                     <div class="form-group">
-                      <label class="form-control-label">Event title</label>
-                      <input type="text" class="form-control form-control-alternative new-event--title" placeholder="Event Title">
+                    <select class="form-control" name="selectSpeaker" id="select_speaker">
+                    <option selected disabled>Sélectionnez un intervenant</option>
+                      <?php foreach ($speakers as $key => $speaker) { ?>
+                          <option><?=$speaker["lastname"] . ' ' . $speaker["firstname"]?></option>
+                      <?php } ?>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <select class="form-control" name="selectSubject" id="select_subject">
+                    <option selected disabled>Sélectionnez une matière</option>
+                      <?php foreach ($subjects as $key => $sub) { ?>
+                          <option><?=$sub["name"]?></option>
+                      <?php } ?>
+                    </select>
                     </div>
                     <div class="form-group mb-0">
                       <label class="form-control-label d-block mb-3">Status color</label>

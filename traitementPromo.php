@@ -21,6 +21,7 @@ switch ($_GET['action']) {
         }
         break;
     case 'add':
+
         if (
             isset($_POST['name']) && !empty($_POST['name'])
             //&& isset($_POST['studentsNumber']) && !empty($_POST['studentsNumber'])
@@ -35,10 +36,12 @@ switch ($_GET['action']) {
                 header('Location: promos.php');
             } else {
                 header('Location: addPromo.php');
+
             }
         }
         break;
     case 'edit':
+
         if (
             isset($_POST['name']) && !empty($_POST['name'])
             // && isset($_POST['studentsNumber']) && !empty($_POST['studentsNumber'])
@@ -50,6 +53,7 @@ switch ($_GET['action']) {
             $req->bindValue(1, $_POST['name'], PDO::PARAM_STR);
             $req->bindValue(2, 0, PDO::PARAM_INT);
             $req->bindValue(3, strtolower($_POST['ref']), PDO::PARAM_STR);
+
 
             if ($req->execute()) {
                 header('Location: promos.php');

@@ -1,4 +1,6 @@
-<?php
+
+<?php 
+
 include("./components/header.php");
 include("./components/db.php");
 ?>
@@ -82,12 +84,15 @@ include("./components/db.php");
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-subjects">Matières</label>
+
                                     <div>
                                         <div class="selectBox" onclick="showCheckboxes()">
+
                                             <select class="form-control">
                                                 <option selected disabled>Selectionnez une matière</option>
                                             </select>
                                             <div class="overSelect"></div>
+
                                         </div>
                                         <div id="checkboxes">
                                             <?php
@@ -100,6 +105,7 @@ include("./components/db.php");
                                             <?php } ?>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

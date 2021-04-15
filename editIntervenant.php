@@ -9,7 +9,7 @@ $req->execute();
 
 $speaker = $req->fetch();
 if (!$speaker) {
-    header('Location: intervenants.php');
+    header('Location: dates.php');
 }
 
 $sql = "SELECT * FROM subjects";
@@ -45,7 +45,7 @@ foreach ($data as $key => $sub) {
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="./intervenants.php">Intervenants</a></li>
+                            <li class="breadcrumb-item"><a href="./dates.php">Intervenants</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Modifier</li>
                         </ol>
                     </nav>
@@ -112,12 +112,17 @@ foreach ($data as $key => $sub) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-subjects">Matières</label>
+
                                     <div>
                                         <div class="selectBox" onclick="showCheckboxes()">
+
+                                       
+
                                             <select class="form-control">
                                                 <option selected disabled>Selectionnez une matière</option>
                                             </select>
                                             <div class="overSelect"></div>
+
                                         </div>
                                         <div id="checkboxes">
                                             <?php
@@ -129,6 +134,9 @@ foreach ($data as $key => $sub) {
                                             <?php } ?>
                                         </div>
                                     </div>
+
+                                           
+
                                 </div>
                             </div>
                         </div>

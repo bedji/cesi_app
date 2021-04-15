@@ -1,3 +1,4 @@
+
 <?php
 include('./components/db.php');
 
@@ -96,3 +97,4 @@ switch ($_GET['action']) {
         header('Location: index.php');
         break;
 }
+

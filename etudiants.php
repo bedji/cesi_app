@@ -16,7 +16,9 @@ $students = $req->fetchAll();
     <div class="header-body">
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
+
           <h6 class="h2 text-white d-inline-block mb-0">CESI Reims</h6>
+
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
@@ -25,7 +27,9 @@ $students = $req->fetchAll();
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
+
           <a href="./addEtudiants.php" class="btn btn-sm btn-neutral">Ajouter étudiants</a>
+
         </div>
       </div>
       <!-- Card stats -->
@@ -36,6 +40,7 @@ $students = $req->fetchAll();
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--6">
+
 
   <?php if (
     isset($_GET["notif"]) && !empty($_GET["notif"])
@@ -51,6 +56,7 @@ $students = $req->fetchAll();
     </div>
 
   <?php } ?>
+
   <div class="row">
 
 
@@ -84,11 +90,13 @@ $students = $req->fetchAll();
             <tbody class="list">
               <?php foreach ($students as $key => $student) { ?>
                 <tr class="text-center">
+
                   <th><a href="./ficheEtudiant.php?id=<?= $student['id'] ?>" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="<?= $student['firstname'] . " " . $student['lastname'] ?> ">
                       <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $student['id'] ?>.jpg">
                     </a></th>
                   <th scope="row">
                     <?= $student['lastname']; ?>
+
                   </th>
                   <th scope="row">
                     <?= $student['firstname']; ?>
@@ -98,6 +106,7 @@ $students = $req->fetchAll();
                   </td>
                   <td>
                     <?php
+
                     $sql2 = "SELECT * FROM promos WHERE id=" . $student['promo_id'];
                     $req2 = $db->prepare($sql2);
                     $req2->execute();
@@ -108,6 +117,9 @@ $students = $req->fetchAll();
                   </td>
                   <td>
                     <div class=" text-center">
+
+                   
+
                       <a class="btn btn-danger col-2" href="./traitementEtudiants.php?action=delete&id=<?= $student['id']; ?>">X</a>
                       <a class="btn btn-warning col-5" href="./editetudiants.php?id=<?= $student['id']; ?>">Modifier</a>
                     </div>
