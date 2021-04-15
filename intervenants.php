@@ -26,7 +26,7 @@ function getSsubjects($db, $speakerId)
     <div class="header-body">
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">CESI Reims</h6>
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
@@ -69,7 +69,6 @@ function getSsubjects($db, $speakerId)
             <thead class="thead-light">
               <tr class="text-center">
                 <th>Intervenant</th>
-                <th>ID</th>
                 <th>Mail</th>
                 <th>Téléphone</th>
                 <th>Matières </th>
@@ -82,9 +81,6 @@ function getSsubjects($db, $speakerId)
                   <th scope="row">
                     <?= $speaker['lastname'] . " " . $speaker['firstname']; ?>
                   </th>
-                  <td class="budget">
-                    <?= $speaker['id']; ?>
-                  </td>
                   <td>
                     <?= $speaker['mail']; ?>
                   </td>
@@ -95,9 +91,6 @@ function getSsubjects($db, $speakerId)
                     <?php
 
                     foreach (getSsubjects($db, $speaker['id']) as $key => $matiere) {
-
-
-
                     ?>
                       <a href="./editSubject.php?id=<?= $matiere['id']   ?>" class=".badge-md badge-pill badge-default"><?= $matiere['name']   ?></a>
 

@@ -5,8 +5,16 @@ include("./components/db.php");
 $sql = "SELECT * FROM promos";
 $req = $db->prepare($sql);
 $req->execute();
-
 $promos = $req->fetchAll();
+
+
+
+
+$url = "http://www.mandor.fr/media/02/00/3087535740.jpg";
+$default = "../../Cesi/cesi_app/assets/img/theme/sketch.jpg";
+$size = 30;
+$email = "badrou14@yahoo.fr";
+$grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=" . urlencode($url) . "&s=" . $size;
 ?>
 
 <!-- Header -->
@@ -15,7 +23,7 @@ $promos = $req->fetchAll();
     <div class="header-body">
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">CESI Reims</h6>
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
@@ -76,46 +84,62 @@ $promos = $req->fetchAll();
                     <?= $promo['name']; ?>
                   </th>
                   <td>
-                    <?= $promo['studentsNumber']; ?>
+
+
+                    <?php
+
+                    $sql = "SELECT * FROM students WHERE promo_id=" . $promo['id'];
+                    $req = $db->prepare($sql);
+                    $req->execute();
+                    $students = $req->fetchAll();
+                    echo count($students);
+
+                    ?>
                   </td>
                   <td>
                     <div class="avatar-group">
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-1.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-2.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-3.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="my avatar">
-                        <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $promo['id'] ?>.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="./assets/img/theme/team-4.jpg">
-                      </a>
+                      <?php
+                      foreach ($students as  $student) { ?>
+                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="<?= $student['firstname'] ?>">
+                          <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $student['id'] ?>.jpg">
+                        </a>
+                      <?php
+                      }
+                      ?>
+
                     </div>
+
+
+
+                    <!-- <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
+                      <img alt="Image placeholder" src="<?php echo $grav_url; ?>">
+                    </a> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                   </td>
                   <td>
                     <?= $promo['ref']; ?>
                   </td>
                   <td>
                     <div class="text-center">
-                      <a class="btn btn-danger col-2" href="./traitementPromo.php?action=delete&id=<?= $promo['id']; ?>">X</a>
-                      <a class="btn btn-warning col-5" href="./editPromo.php?id=<?= $promo['id']; ?>">Modifier</a>
+
+                      <a class="btn btn-danger col-2" href="./traitementPromo.php?action=delete&id=<?= $promo['id'] ?>">X</a>
+                      <a class="btn btn-warning col-5" href="./editPromo.php?id=<?= $promo['id'] ?>">Modifier</a>
+
+                     
+
                     </div>
                   </td>
                 </tr>

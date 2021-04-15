@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("./components/header.php");
 include("./components/db.php");
 
@@ -23,7 +23,7 @@ $speakers = $req->fetch();
     <div class="header-body">
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">CESI Reims</h6>
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
@@ -47,7 +47,7 @@ $speakers = $req->fetch();
 
 
 
-        <!---------------------------------------------------------------------------------------------------------------------------
+    <!---------------------------------------------------------------------------------------------------------------------------
 
                                              METTRE LE CONTENU DE VOTRE PAGE CI-DESSOUS
 
@@ -74,22 +74,24 @@ $speakers = $req->fetch();
             <tbody class="list">
               <?php foreach ($subjects as $key => $subject) { ?>
                 <tr class="text-center">
-                <th>
-                    <?= $subject['name'];?>
-                </th>
-                <td>
-                    <?= $subject['description'];?>
-                </td>
-                <td>
-                  <?= $speakers['lastname'] . " " . $speakers['firstname'];?>
-                </td>
-                <td>
-                  <div class="text-center">
-                      <a class="btn btn-danger col-2" href="./traitementSubject.php?action=delete&id=<?= $subject['id'];?>">X</a>
-                      <a class="btn btn-warning col-5" href="./editSubject.php?id=<?= $subject['id'];?>">Modifier</a>
-                  </div>
-                </td>
-              </tr>              
+
+                  <td>
+                    <?= $subject['id']; ?>
+                  </td>
+                  <th>
+                    <?= $subject['name']; ?>
+                  </th>
+                  <td>
+                    <?= $subject['description']; ?>
+                  </td>
+                  <td>
+                    <div class="text-center">
+                      <a class="btn btn-danger col-2" href="./traitementSubject.php?action=delete&id=<?= $subject['id']; ?>">X</a>
+                      <a class="btn btn-warning col-5" href="./editSubject.php?id=<?= $subject['id']; ?>">Modifier</a>
+                    </div>
+                  </td>
+                </tr>
+
               <?php } ?>
             </tbody>
           </table>
@@ -99,7 +101,7 @@ $speakers = $req->fetch();
 
 
 
-        <!---------------------------------------------------------------------------------------------------------------------------
+    <!---------------------------------------------------------------------------------------------------------------------------
 
                                              METTRE LE CONTENU DE VOTRE PAGE CI-DESSOUS
 

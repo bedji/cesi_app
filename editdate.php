@@ -6,7 +6,6 @@ $id = $_GET['id'];
 $sql = "SELECT * FROM dates WHERE id=$id";
 $req = $db->prepare($sql);
 $req->execute();
-
 $date = $req->fetch();
 ?>
 
@@ -19,7 +18,7 @@ $date = $req->fetch();
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">CESI Reims</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -57,7 +56,7 @@ $date = $req->fetch();
                 </div>
             </div>
             <div class="card-body">
-                <form action="./traitementDates.php?action=edit" method="POST">
+                <form action="./traitementDates.php?action=edit&id=<?= $id ?>" method="POST">
                     <h6 class="heading-small text-muted mb-4">information de Date</h6>
                     <div class="pl-lg-12">
                         <div class="row">
@@ -123,7 +122,7 @@ $date = $req->fetch();
                                         // echo (count($speakers));
                                         // die();
                                         foreach ($speakers as $key => $speaker) { ?>
-                                            <option <?= $date["speaker_id"] === $speaker["id"] ? "selected" : '' ?> value="<?= $speaker['id'] ?>"> <?= $speaker['firstname'] . ' ' . $speaker['lastname'] ?></option>
+                                            <option <?= $date["speaker_id"] === $speaker["id"] ? "selected" : "" ?> value="<?= $speaker['id'] ?>"> <?= $speaker['firstname'] . ' ' . $speaker['lastname'] ?></option>
                                         <?php }
                                         ?>
 
@@ -134,7 +133,7 @@ $date = $req->fetch();
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input name="valider" type="checkbox" <?= $date['validated']  ? 'checked ' : '' ?>class="custom-control-input" id="speakervalid">
+                                        <input name="valider" type="checkbox" <?= $date['speaker_id']  ? '' : 'disabled' ?> <?= $date['validated']  ? 'checked' : '' ?> class="custom-control-input" id="speakervalid">
                                         <label class="custom-control-label" for="speakervalid">Date Validé</label>
                                     </div>
                                 </div>

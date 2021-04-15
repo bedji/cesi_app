@@ -23,12 +23,14 @@ function initcheck() {
   console.log(selectpeaker.value);
   if (selectpeaker.value === "null") {
     validechek.disabled = true;
-    return;
+    // return;
+  } else {
+    validechek.disabled = false;
   }
-  validechek.disabled = false;
 }
 async function getspeakers(subjecid) {
-  let res = await fetch("/cesi/cesi_app/codejson.php?id=" + subjecid, {
+  // en localhost ///let res = await fetch("/cesi/cesi_app/codejson.php?id=" + subjecid, {
+  let res = await fetch("codejson.php?id=" + subjecid, {
     method: "get",
   });
   const data = await res.json();
@@ -53,4 +55,5 @@ function remplirspeaker(donnee) {
   });
   initcheck();
 }
-selectsubject.addEventListener("onload", initcheck());
+//selectsubject.addEventListener("onload", initcheck());
+//initcheck();

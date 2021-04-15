@@ -59,7 +59,7 @@ include("./components/db.php");
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Choix de la promo</label>
-                                    <select class="form-control" name="promoid" id="promoselect">
+                                    <select class="form-control" name="promoid" id="promoselect" required>
                                         <option disabled selected>Sélectionner une promo</option>
                                         <?php
                                         $sql = "SELECT * FROM promos";
@@ -80,9 +80,13 @@ include("./components/db.php");
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Matiére</label>
-                                    <select class="form-control" name='subjectselect' id="subjectselect">
+
+                                    <select class="form-control" name='subjectselect' id="subjectselect" required>
+
+                                    
 
                                       
+
                                         <option value="null" disabled selected>Sélectionner une Matiére</option>
 
                                         <?php
@@ -110,7 +114,7 @@ include("./components/db.php");
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input name="valider" type="checkbox" class="custom-control-input" id="speakervalid">
+                                        <input name="valider" type="checkbox" disabled class="custom-control-input" id="speakervalid">
                                         <label class="custom-control-label" for="speakervalid">Date Validé</label>
                                     </div>
                                 </div>

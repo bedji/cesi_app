@@ -1,14 +1,4 @@
-<?php
-include("./components/header.php");
-include('./components/db.php');
-
-$id = $_GET['id'];
-$sql = "SELECT * FROM promos WHERE id=$id";
-$req = $db->prepare($sql);
-$req->execute();
-
-$promo = $req->fetch();
-?>
+<?php include("./components/header.php") ?>
 
 <!-- Header -->
 <div class="header bg-primary pb-6">
@@ -21,7 +11,7 @@ $promo = $req->fetch();
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="./intervenants.php">Promotions</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Modification</li>
+                            <li class="breadcrumb-item active" aria-current="page">Ajout</li>
                         </ol>
                     </nav>
                 </div>
@@ -45,29 +35,29 @@ $promo = $req->fetch();
 
         --------------------------------------------------------------------------------------------------------------------------->
 
-        <div class="card col-12">
+        <div class="card justify-content-center col-10 m-auto">
             <div class="card-header">
                 <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0">Modifier promotion</h3>
+                    <div class="col-10">
+                        <h3 class="mb-0">Connection</h3>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <form action="./traitementPromo.php?action=edit&id=<?= $id ?>" method="POST">
-                    <h6 class="heading-small text-muted mb-4">Promo informations</h6>
+            <div class="row justify-content-md-center">
+                <form class="col-10" action="./traitementUser.php?action=login" method="POST">
+                    <h6 class="heading-small text-muted mb-4">vos informations</h6>
                     <div class="pl-lg-12">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Nom</label>
-                                    <input type="text" name="name" id="input-name" class="form-control" value="<?= $promo['name'] ?>">
+                                    <label class="form-control-label" for="input-username">votre Email</label>
+                                    <input type="email" name="name" id="input-name" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-first-name">Référence</label>
-                                    <input type="text" name="ref" id="input-ref" class="form-control" value="<?= $promo['ref'] ?>">
+                                    <label class="form-control-label" for="input-email">Mot de pass</label>
+                                    <input type="password" name="studentsNumber" id="input-studentsNumber" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -75,13 +65,15 @@ $promo = $req->fetch();
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-first-name">Référence</label>
-                                    <input type="text" name="ref" id="input-ref" class="form-control" value="<?= $promo['ref'] ?>">
+                                    <input type="text" name="ref" id="input-ref" class="form-control">
                                 </div>
                             </div>
                         </div> -->
-                        <div class="d-flex justify-content-between">
-                            <a href="./promos.php" class="btn btn-warning">Retour</a>
-                            <input type="submit" class="btn btn-success" value="Valider">
+                        <div class="d-flex justify-content-center mb-4">
+
+                            <input type="submit" class="btn btn-success" value="Conneter">
+                            <div class="w-100"></div>
+                            <a href="http://">vous n'avez pas de compte , inscrivez vous</a>
                         </div>
                     </div>
                 </form>

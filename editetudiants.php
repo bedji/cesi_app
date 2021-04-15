@@ -3,26 +3,13 @@ include("./components/header.php");
 include("./components/db.php");
 
 $id = $_GET['id'];
-$sql = "SELECT * FROM speakers WHERE id = $id";
+$sql = "SELECT * FROM students WHERE id = $id";
 $req = $db->prepare($sql);
 $req->execute();
 
-$speaker = $req->fetch();
-if (!$speaker) {
-    header('Location: dates.php');
-}
-
-$sql = "SELECT * FROM subjects";
-$req = $db->prepare($sql);
-$req->execute();
-$subjects = $req->fetchAll();
-$sql2 = "SELECT subject_id, subjects.name AS sub_name FROM speakers_subjects JOIN subjects ON subjects.id=speakers_subjects.subject_id WHERE speaker_id=" . $_GET['id'];
-$req = $db->prepare($sql2);
-$req->execute();
-$data = $req->fetchAll();
-$matching_subjects = [];
-foreach ($data as $key => $sub) {
-    array_push($matching_subjects, $sub['subject_id']);
+$student = $req->fetch();
+if (!$student) {
+    header('Location: etudiants.php');
 }
 
 ?>
@@ -45,7 +32,7 @@ foreach ($data as $key => $sub) {
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="./dates.php">Intervenants</a></li>
+                            <li class="breadcrumb-item"><a href="./etudiants.php">Etudiants</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Modifier</li>
                         </ol>
                     </nav>
@@ -59,6 +46,7 @@ foreach ($data as $key => $sub) {
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--6">
+
     <div class="row">
 
         <!---------------------------------------------------------------------------------------------------------------------------
@@ -72,25 +60,25 @@ foreach ($data as $key => $sub) {
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Modifier intervenant </h3>
+                        <h3 class="mb-0">Modifier étudiants </h3>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <form action="./traitementInt.php?action=edit&id=<?= $id ?>" method="POST">
+                <form action="./traitementEtudiants.php?action=edit&id=<?= $id ?>" method="POST">
                     <h6 class="heading-small text-muted mb-4">User information</h6>
                     <div class="pl-lg-12">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-username">Nom</label>
-                                    <input type="text" name="lastname" id="input-username" class="form-control" value="<?= $speaker['lastname'] ?>">
+                                    <input type="text" name="lastname" id="input-username" class="form-control" placeholder="Dupont" value="<?= $student['lastname'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Prénom</label>
-                                    <input type="text" name="firstname" id="input-email" class="form-control" value="<?= $speaker['firstname'] ?>">
+                                    <input type="text" name="firstname" id="input-email" class="form-control" placeholder="Jean" value="<?= $student['firstname'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -98,64 +86,46 @@ foreach ($data as $key => $sub) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-first-name">Mail</label>
-                                    <input type="mail" name="mail" id="input-first-name" class="form-control" value="<?= $speaker['mail'] ?>">
+                                    <input type="mail" name="mail" id="input-first-name" class="form-control" placeholder="jesse@example.com" value="<?= $student['mail'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-last-name">Téléphone</label>
-                                    <input type="tel" name="telephone" id="input-last-name" class="form-control" value="<?= $speaker['telephone'] ?>">
+                                    <label class="form-control-label" for="exampleFormControlSelect1">Promotion</label>
+                                    <select class="form-control" name='promo_id' id="promo_id">
+                                        <option disabled selected>Sélectionner une Promotion</option>
+                                        <?php
+                                        $sql = "SELECT * FROM promos";
+                                        $req = $db->prepare($sql);
+                                        $req->execute();
+                                        $promos = $req->fetchAll();
+                                        foreach ($promos as $key => $promo) { ?>
+                                            <option <?= $promo['id'] === $student['promo_id'] ? "selected" : "" ?> value="<?= $promo['id'] ?>"> <?= $promo['name'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-subjects">Matières</label>
 
-                                    <div>
-                                        <div class="selectBox" onclick="showCheckboxes()">
 
-                                       
-
-                                            <select class="form-control">
-                                                <option selected disabled>Selectionnez une matière</option>
-                                            </select>
-                                            <div class="overSelect"></div>
-
-                                        </div>
-                                        <div id="checkboxes">
-                                            <?php
-                                            foreach ($subjects as $key => $subject) { ?>
-                                                <label for="<?= $subject['id'] ?>">
-                                                    <input name="subjects[]" <?= in_array($subject['id'], $matching_subjects) ? 'checked' : '' ?> type="checkbox" id="<?= $subject['id'] ?>" value="<?= $subject['id'] ?>" />
-                                                    &nbsp;<?= $subject['name'] ?>
-                                                </label>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-
-                                           
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <a href="./intervenants.php" class="btn btn-warning">Retour</a>
-                            <button class="btn btn-success">Modifier</button>
-                        </div>
                     </div>
-                </form>
+                    <div class="d-flex justify-content-between">
+                        <a href="./etudiants.php" class="btn btn-warning">Retour</a>
+                        <input type="submit" class="btn btn-success" value="Valider la modification">
+                        <!-- <a href="./etudiants.php" class="btn btn-success">Valider la modification</a> -->
+                    </div>
             </div>
-
-
+            </form>
         </div>
 
-        <!---------------------------------------------------------------------------------------------------------------------------
+
+    </div>
+
+    <!---------------------------------------------------------------------------------------------------------------------------
 
                                                 METTRE LE CONTENU DE VOTRE PAGE CI-DESSUS
 
       --------------------------------------------------------------------------------------------------------------------------->
-    </div>
+</div>
 
-    <?php include("./components/footer.php") ?>
+<?php include("./components/footer.php") ?>

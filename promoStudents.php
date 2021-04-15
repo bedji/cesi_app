@@ -2,12 +2,17 @@
 include("./components/header.php");
 include("./components/db.php");
 
-$sql = "SELECT * FROM students";
+$sql = "SELECT * FROM students WHERE promo_id=" . $_GET['id'];
 $req = $db->prepare($sql);
 $req->execute();
 
 $students = $req->fetchAll();
 
+$sqlPromo = "SELECT * FROM promos WHERE id=" . $_GET['id'];
+$reqPromo = $db->prepare($sqlPromo);
+$reqPromo->execute();
+
+$promos = $reqPromo->fetch();
 ?>
 
 <!-- Header -->
@@ -16,20 +21,8 @@ $students = $req->fetchAll();
     <div class="header-body">
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-
-          <h6 class="h2 text-white d-inline-block mb-0">CESI Reims</h6>
-
-          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="./index.php"><i class="fas fa-home"></i></a></li>
-              <li class="breadcrumb-item active" aria-current="page">Etudiants</li>
-            </ol>
-          </nav>
-        </div>
-        <div class="col-lg-6 col-5 text-right">
-
-          <a href="./addEtudiants.php" class="btn btn-sm btn-neutral">Ajouter étudiants</a>
-
+          <h6 class="h2 text-white d-inline-block mb-0" data-toggle="tooltip" data-original-title="Promotion"><?= $promos['name']?></h6><br>
+          <h6 class="h5 text-white d-inline-block mb-0" data-toggle="tooltip" data-original-title="Référence"><?= $promos['ref']?></h6>
         </div>
       </div>
       <!-- Card stats -->
@@ -40,23 +33,6 @@ $students = $req->fetchAll();
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--6">
-
-
-  <?php if (
-    isset($_GET["notif"]) && !empty($_GET["notif"])
-    && isset($_GET["type"]) && !empty($_GET["type"])
-  ) { ?>
-
-    <div class="alert alert-<?= $_GET["type"] ?> alert-dismissible fade show" role="alert">
-      <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-      <span class="alert-text"><?= $_GET["notif"] ?></span>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-  <?php } ?>
-
   <div class="row">
 
 
@@ -82,44 +58,31 @@ $students = $req->fetchAll();
                 <th>Avatar</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Mail</th>
-                <th>Promotions </th>
+                <th>E-mail</th>
+                <th>Dilemme</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody class="list">
               <?php foreach ($students as $key => $student) { ?>
                 <tr class="text-center">
-
-                  <th><a href="./ficheEtudiant.php?id=<?= $student['id'] ?>" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="<?= $student['firstname'] . " " . $student['lastname'] ?> ">
-                      <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $student['id'] ?>.jpg">
-                    </a></th>
-                  <th scope="row">
+                    <td>
+                        <a href="./ficheEtudiant.php?id=<?= $student['id']; ?>"  class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="<?= $student['lastname'] . " " . $student['firstname'] ?>">
+                        <img alt="Image placeholder" src="https://randomuser.me/api/portraits/men/<?= $student ['id']?>.jpg">
+                      </a> 
+                    </td>
+                  <td>
                     <?= $student['lastname']; ?>
-
-                  </th>
-                  <th scope="row">
+                  </td>
+                  <td>
                     <?= $student['firstname']; ?>
-                  </th>
-                  <td class="budget">
+                  </td>
+                  <td>
                     <?= $student['mail']; ?>
                   </td>
+                  <td> <span onclick="fraise()">Fraise</span> ou <span onclick="framboise()">framboise</span> ?</td>
                   <td>
-                    <?php
-
-                    $sql2 = "SELECT * FROM promos WHERE id=" . $student['promo_id'];
-                    $req2 = $db->prepare($sql2);
-                    $req2->execute();
-                    $promos = $req2->fetch();
-                    ?>
-                    <a href='./calendarPromo.php?id=<?= $promos['id'] ?>'> <?= $promos['name'] ?> </a>
-
-                  </td>
-                  <td>
-                    <div class=" text-center">
-
-                   
-
+                    <div class="text-center">
                       <a class="btn btn-danger col-2" href="./traitementEtudiants.php?action=delete&id=<?= $student['id']; ?>">X</a>
                       <a class="btn btn-warning col-5" href="./editetudiants.php?id=<?= $student['id']; ?>">Modifier</a>
                     </div>
@@ -141,5 +104,13 @@ $students = $req->fetchAll();
         --------------------------------------------------------------------------------------------------------------------------->
 
   </div>
+<script>
+    function fraise() {
+        alert("t'es nul");
+    }
 
+    function framboise() {
+        alert('Tu es ouvert d\'esprit !');
+    }
+</script>
   <?php include("./components/footer.php") ?>

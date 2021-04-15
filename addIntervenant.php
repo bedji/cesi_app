@@ -1,4 +1,6 @@
+
 <?php 
+
 include("./components/header.php");
 include("./components/db.php");
 ?>
@@ -9,7 +11,7 @@ include("./components/db.php");
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">CESI Reims </h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -18,7 +20,7 @@ include("./components/db.php");
                         </ol>
                     </nav>
                 </div>
-               
+
             </div>
             <!-- Card stats -->
             <div class="row">
@@ -82,24 +84,28 @@ include("./components/db.php");
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-subjects">Matières</label>
-                                        <div>
-                                            <div class="selectBox" onclick="showCheckboxes()">
+
+                                    <div>
+                                        <div class="selectBox" onclick="showCheckboxes()">
+
                                             <select class="form-control">
                                                 <option selected disabled>Selectionnez une matière</option>
                                             </select>
                                             <div class="overSelect"></div>
-                                            </div>
-                                            <div id="checkboxes">
-                                            <?php
-                                                $sql = "SELECT * FROM subjects";
-                                                $req = $db->prepare($sql);
-                                                $req->execute();
-                                                $subjects = $req->fetchAll();
-                                                foreach ($subjects as $key => $subject) { ?>
-                                                <label for="<?= $subject['id']?>"><input name="subjects[]" type="checkbox" id="<?= $subject['id']?>" value="<?= $subject['id']?>" />&nbsp;<?= $subject['name']?></label>
-                                            <?php } ?>
-                                            </div>
+
                                         </div>
+                                        <div id="checkboxes">
+                                            <?php
+                                            $sql = "SELECT * FROM subjects";
+                                            $req = $db->prepare($sql);
+                                            $req->execute();
+                                            $subjects = $req->fetchAll();
+                                            foreach ($subjects as $key => $subject) { ?>
+                                                <label for="<?= $subject['id'] ?>"><input name="subjects[]" type="checkbox" id="<?= $subject['id'] ?>" value="<?= $subject['id'] ?>" />&nbsp;<?= $subject['name'] ?></label>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -112,7 +118,7 @@ include("./components/db.php");
             </div>
         </div>
 
-        
+
         <!---------------------------------------------------------------------------------------------------------------------------
 
                                              METTRE LE CONTENU DE VOTRE PAGE CI-DESSOUS
@@ -122,15 +128,4 @@ include("./components/db.php");
 
     </div>
 
-    <?php include("./components/footer.php") ?>
-    <!-- <select type="subjects" name="subjects" id="input-subjects" class="form-control">
-                                        <option disabled selected>Sélectionner une matière</option>
-                                        <?php
-                                            $sql = "SELECT * FROM subjects";
-                                            $req = $db->prepare($sql);
-                                            $req->execute();
-                                            $subjects = $req->fetchAll();
-                                            foreach ($subjects as $key => $subject) { ?>
-                                            <option value="<?= $subject['id'] ?>"> <?= $subject['name'] ?></option>
-                                        <?php } ?>
-                                    </select> -->
+    <?php include("./components/footer.php"); ?>

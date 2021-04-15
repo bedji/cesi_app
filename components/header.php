@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <title>Projet Promos</title>
     <!-- Favicon -->
     <link rel="icon" href="./assets/img/brand/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/vendor/fullcalendar/dist/fullcalendar.min.css">
@@ -22,7 +22,7 @@
 
     <!-- Argon CSS -->
 
-
+    <link rel="stylesheet" href="./assets/css/stylemenu.css" type="text/css">
     <link rel="stylesheet" href="./assets/css/argon.css?v=1.2.0" type="text/css">
     <style>
         .b {
@@ -81,7 +81,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="index.php">
                                 <i class="ni ni-calendar-grid-58 text-primary"></i>
-                                <span class="nav-link-text">Promos</span>
+
+                                <span class="nav-link-text">Accueil</span>
+
                             </a>
                         </li>
                         <li class="nav-item">
@@ -125,8 +127,9 @@
         <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                    <ul class="navbar-nav align-items-center  ml-5 ml-md-5 ">
                         <li class="nav-item dropdown">
+                            <!------ faut le cacher ---->
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
