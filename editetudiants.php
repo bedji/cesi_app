@@ -46,6 +46,7 @@ if (!$student) {
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--6">
+
     <div class="row">
 
         <!---------------------------------------------------------------------------------------------------------------------------
@@ -91,7 +92,7 @@ if (!$student) {
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="exampleFormControlSelect1">Promotion</label>
-                                    <select class="form-control" name='subjectselect' id="promo_id">
+                                    <select class="form-control" name='promo_id' id="promo_id">
                                         <option disabled selected>Sélectionner une Promotion</option>
                                         <?php
                                         $sql = "SELECT * FROM promos";
@@ -110,7 +111,8 @@ if (!$student) {
                     </div>
                     <div class="d-flex justify-content-between">
                         <a href="./etudiants.php" class="btn btn-warning">Retour</a>
-                        <a href="./etudiants.php" class="btn btn-success">Valider la modification</a>
+                        <input type="submit" class="btn btn-success" value="Valider la modification">
+                        <!-- <a href="./etudiants.php" class="btn btn-success">Valider la modification</a> -->
                     </div>
             </div>
             </form>

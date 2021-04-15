@@ -59,23 +59,36 @@ switch ($_GET['action']) {
         }
         break;
     case 'edit':
+        $id = $_GET['id'];
         if (
             isset($_POST['lastname']) && !empty($_POST['lastname'])
             && isset($_POST['firstname']) && !empty($_POST['firstname'])
             && isset($_POST['mail']) && !empty($_POST['mail'])
+            &&  isset($_POST["promo_id"]) && !empty($_POST['promo_id'])
         ) {
-            var_dump($_POST);
-            die();
-            $promos = isset($_POST["promo_id"]) ? $_POST["promo_id"] : [];
-            $sql = "UPDATE speakers SET lastname=?, firstname=?, mail=?";
-            $req = $db->prepare($sql);
-            $req->bindValue(1, strtolower($_POST['lastname']), PDO::PARAM_STR);
-            $req->bindValue(2, strtolower($_POST['firstname']), PDO::PARAM_STR);
-            $req->bindValue(3, $_POST['mail'], PDO::PARAM_STR);
-            if ($req->execute()) {
-                header('Location: etudiants.php');
-            } else {
-                header('Location: editEtudiants.php');
+            try {
+                // var_dump($_POST);
+                // var_dump($_GET['id']);
+                // die();
+                $db->beginTransaction();
+                // UPDATE students SET lastname="bedji", firstname="badrou", mail='badrou14@yahoo.fr' promo_id="1" WHERE id =2
+                $sql = " UPDATE `students` SET `firstname` = ?, `lastname` = ?, `mail` = ?, `promo_id` = ? WHERE `students`.`id` =  " . $id;
+                // $sql = "UPDATE students SET lastname=?, firstname=?, mail=? promo_id=? WHERE `students.id` =" . $id;
+                $req = $db->prepare($sql);
+
+                $req->bindValue(1, strtolower($_POST['firstname']), PDO::PARAM_STR);
+                $req->bindValue(2, strtolower($_POST['lastname']), PDO::PARAM_STR);
+                $req->bindValue(3, $_POST['mail'], PDO::PARAM_STR);
+                $req->bindValue(4, $_POST["promo_id"], PDO::PARAM_STR);
+                if (!$req->execute()) {
+
+                    throw new Error("Impossible de modifier l'etudient");
+                }
+                $db->commit();
+                header('Location: etudiants.php?notif=Votre etudient a bien ete modifier&type=success');
+            } catch (\Throwable $th) {
+                $db->rollBack();
+                header('Location: etudiants.php?notif=' . $th->getMessage() . '&type=danger');
             }
         }
         break;

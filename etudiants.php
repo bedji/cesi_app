@@ -36,6 +36,21 @@ $students = $req->fetchAll();
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--6">
+
+  <?php if (
+    isset($_GET["notif"]) && !empty($_GET["notif"])
+    && isset($_GET["type"]) && !empty($_GET["type"])
+  ) { ?>
+
+    <div class="alert alert-<?= $_GET["type"] ?> alert-dismissible fade show" role="alert">
+      <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+      <span class="alert-text"><?= $_GET["notif"] ?></span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  <?php } ?>
   <div class="row">
 
 

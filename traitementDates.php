@@ -70,9 +70,7 @@ switch ($_GET['action']) {
             // die();
             try {
                 $db->beginTransaction();
-                // $sql = "DELETE FROM dates WHERE id=" . $_GET['id'];
-                // $req = $db->prepare($sql);
-                // if ($req->execute()) {
+
                 $sql = "UPDATE `dates` SET `date`=? , `validated`=?, `promo_id`=?, `subject_id`=?, `speaker_id`= ? WHERE `dates`.`id` =" . $_GET['id'];
                 $req = $db->prepare($sql);
                 $req->bindValue(1, strtolower($_POST['dateinput']), PDO::PARAM_STR);
@@ -80,18 +78,14 @@ switch ($_GET['action']) {
                 $req->bindValue(3, $_POST['promoid'], PDO::PARAM_INT);
                 $req->bindValue(4, $_POST['subjectselect'], PDO::PARAM_INT);
                 $req->bindValue(5, $_POST['speakerselect'] !== 'null' ? $_POST['speakerselect'] : null, PDO::PARAM_INT);
-                //var_dump($_POST) . "<br />\n";
-                // $leresultat = $_POST['speakerselect'] !== null ? $_POST['speakerselect'] : null;
-                // echo ("resultat= " . $leresultat);
-                // echo ("<br />\n speaker_id = " . $_POST['speakerselect'] . "<br />\n");
-                // echo (isset($_POST['valider']) && $_POST['valider'] === "on" ? 1 : 0)  . "<br />\n";
+
                 // var_dump($req);
                 // die();
                 if (!$req->execute()) {
 
                     throw new Error("impossible de modifier la date  ");
                 }
-                // }
+
 
                 $db->commit();
                 header('Location: dates.php?notif=Votre date a bien ete modifier&type=success');
